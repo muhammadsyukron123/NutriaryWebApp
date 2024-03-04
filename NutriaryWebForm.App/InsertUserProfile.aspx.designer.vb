@@ -11,77 +11,86 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Register
+Partial Public Class InsertUserProfile
 
     '''<summary>
-    '''ltRegisterStatus control.
+    '''ltInsertUserProfileStatus control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ltRegisterStatus As Global.System.Web.UI.WebControls.Literal
+    Protected WithEvents ltInsertUserProfileStatus As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
-    '''txtFirstName control.
+    '''ltInputUserProfileStatus control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtFirstName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ltInputUserProfileStatus As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
-    '''txtLastName control.
+    '''ddlGender control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtLastName As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlGender As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''txtUsername control.
+    '''txtAge control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtUsername As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtAge As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtEmail control.
+    '''txtHeight control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtHeight As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtPassword control.
+    '''txtWeight control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtPassword As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtWeight As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtConfirmPassword control.
+    '''ddlActivityLevel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtConfirmPassword As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlActivityLevel As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''btnRegister control.
+    '''ddlTargetGoal control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnRegister As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents ddlTargetGoal As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''btnSubmitProfile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSubmitProfile As Global.System.Web.UI.WebControls.Button
 End Class

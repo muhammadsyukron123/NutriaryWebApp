@@ -12,6 +12,13 @@
                 <h6 class="m-0 font-weight-bold text-primary">Your food consumption today</h6>
             </div>
             <div class="card-body">
+                <div class="progress-bar-animated"
+                    style="width: 100%; height: 20px; background-color: #4e73df; border-radius: 20px;">
+                    <div class="progress-bar progress-bar-striped bg-gradient-primary progress-bar-animated" role="progressbar" style="width: 100%"
+                        aria-valuenow="500" aria-valuemin="0" aria-valuemax="2000">
+                    </div>
+                  </div>
+                <br />
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
                     Add Food Consumption
                 </button>

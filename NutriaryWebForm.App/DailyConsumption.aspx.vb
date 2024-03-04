@@ -49,7 +49,7 @@ Public Class DailyConsumption
     End Sub
 
     Public Function GetFoodNutritionByID() As List(Of ConsumedFoodsDTO)
-        Dim userId As Integer = Convert.ToInt32(Session("UserID"))
+        Dim userId = Session("UserID")
         Return _consumedFoodsBLL.GetFoodNutritionByID(userId)
     End Function
 
@@ -66,7 +66,7 @@ Public Class DailyConsumption
     Protected Sub btnAddFoodConsumption_Click(sender As Object, e As EventArgs)
 
         Try
-            Dim userId As Integer = Convert.ToInt32(Session("UserID"))
+            Dim userId As Integer = Session("UserID")
             _consumedFoodsBLL.AddFoodConsumption(userId, ddFoodName.SelectedValue, txtFoodQuantity.Text)
             LoadFoodList()
             ltMessage.Text = "<span class='alert alert-success'>Food Consumption Added</span><br/><br/>"

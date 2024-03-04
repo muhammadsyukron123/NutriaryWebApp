@@ -5,9 +5,8 @@ using System.Text;
 
 namespace NutriaryWebApp.DAL.Interfaces
 {
-    public interface IAuthentication
+    public interface ICreateUser
     {
-        UserLogin LoginUser(string username, string password);
-
+        void CreateUser(User user);
     }
 }

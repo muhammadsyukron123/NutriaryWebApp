@@ -1,5 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using NutriaryWebApp.BLL.DTOs;
 using NutriaryWebApp.BLL.Interfaces;
+using NutriaryWebApp.BO.BO;
 using NutriaryWebApp.DAL.DAL;
 using NutriaryWebApp.DAL.Interfaces;
 using System;
@@ -16,16 +18,28 @@ namespace NutriaryWebApp.BLL.BLL
             _authentication = new AuthenticationDAL();
         }
 
-        public int UserLogin(string username, string password, out int userId)
+        public UserLoginDTO LoginUser(string username, string password)
         {
             try
             {
-                var result = _authentication.UserLogin(username, password, out userId);
-                return result;
+                var result = _authentication.LoginUser(username, password);
+                if (result == null)
+                {
+                    throw new Exception("Invalid username or password");
+                }
+                UserLoginDTO userLoginDTO = new UserLoginDTO
+                {
+                    LoginResult = result.LoginResult,
+                    user_id = result.user_id,
+                    username = result.username,
+                    firstname = result.firstname,
+                    lastname = result.lastname
+                };
+                return userLoginDTO;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new ArgumentException(ex.Message);
             }
         }
     }

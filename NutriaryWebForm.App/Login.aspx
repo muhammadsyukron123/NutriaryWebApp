@@ -33,7 +33,7 @@
             <div class="col-xl-5 col-lg-12 col-md-9">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body">
+                    <div class="card-body p-5">
                         <!-- Nested Row within Card Body -->
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Welcome to Nutriary!</h1>
@@ -57,15 +57,6 @@
                         <div class="text-center">
                             <a class="small" href="Register.aspx">Create an Account!</a>
                         </div>
-
-                        <%--<div class="p-0">
-                        </div>--%>
-
-                        <%--<div class="row">
-                            <div class="col-lg-6">
-                                
-                            </div>
-                        </div>--%>
                     </div>
                 </div>
 

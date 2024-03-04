@@ -26,51 +26,63 @@
 <body class="bg-gradient-primary">
 
     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-5">
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                            </div>
-                            <form class="user" runat="server">
-                                <div class="form-group row" runat="server">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control form-control-user" placeholder="First Name" />
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control form-control-user" placeholder="Last Name" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" CssClass="form-control form-control-user" placeholder="Email Address" />
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control form-control-user" placeholder="Password" />
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" CssClass="form-control form-control-user" placeholder="Repeat Password" />
-                                    </div>
-                                </div>
-                                <asp:Button ID="btnRegister" runat="server" Text="Register Account" CssClass="btn btn-primary btn-user btn-block" OnClick="btnRegister_Click"/>
-                            </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="Login.aspx">Already have an account? Login!</a>
-                            </div>
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                         </div>
+                        <form class="user" runat="server">
+                            <asp:Literal ID="ltRegisterStatus" runat="server" />
+                            <div class="form-group row" runat="server">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control form-control-user" placeholder="First Name" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control form-control-user" placeholder="Last Name" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control form-control-user" placeholder="Username" />
+                            </div>
+                            <div class="form-group">
+                                <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" CssClass="form-control form-control-user" placeholder="Email Address" />
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control form-control-user" placeholder="Password" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" CssClass="form-control form-control-user" placeholder="Repeat Password" />
+                                </div>
+                            </div>
+                            <asp:Button ID="btnRegister" runat="server" Text="Register Account" CssClass="btn btn-primary btn-user btn-block" OnClick="btnRegister_Click" />
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="forgot-password.html">Forgot Password?</a>
+                        </div>
+                        <div class="text-center">
+                            <a class="small" href="Login.aspx">Already have an account? Login!</a>
+                        </div>
+                        <!-- Nested Row within Card Body -->
+                        <%--<div class="col">
+            <div class="p-5">
+            </div>
+        </div>--%>
+
+                        <%--<div class="row">
+            
+        </div>--%>
                     </div>
                 </div>
+
             </div>
         </div>
+
+
 
     </div>
 
