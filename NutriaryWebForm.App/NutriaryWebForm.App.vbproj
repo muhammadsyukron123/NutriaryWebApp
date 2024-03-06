@@ -46,6 +46,9 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.1.28\lib\net461\Dapper.dll</HintPath>
     </Reference>
@@ -162,6 +165,7 @@
     <Content Include="Global.asax" />
     <Content Include="InsertUserProfile.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -221,6 +225,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Startbootstrap\css\sb-admin-2.css" />
     <Content Include="Startbootstrap\css\sb-admin-2.min.css" />
+    <Content Include="Startbootstrap\img\nutriary_logo.png" />
     <Content Include="Startbootstrap\img\undraw_posting_photo.svg" />
     <Content Include="Startbootstrap\img\undraw_profile.svg" />
     <Content Include="Startbootstrap\img\undraw_profile_1.svg" />
@@ -1974,6 +1979,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.vb">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.vb">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Register.aspx.designer.vb">
       <DependentUpon>Register.aspx</DependentUpon>

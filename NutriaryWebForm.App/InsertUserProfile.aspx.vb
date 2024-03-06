@@ -9,7 +9,7 @@ Public Class InsertUserProfile
     End Sub
 
     Protected Sub btnSubmitProfile_Click(sender As Object, e As EventArgs)
-        Dim _addUserProfile As New AddUserBLL
+        Dim _addUserProfile As New UserProfileBLL
         Dim _userProfile As New AddUserProfileDTO
         _userProfile.user_id = Session("UserID")
         _userProfile.gender = ddlGender.SelectedValue
