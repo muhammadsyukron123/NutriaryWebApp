@@ -56,6 +56,32 @@ namespace NutriaryWebApp.BLL.BLL
             return foodNameLists;
         }
 
+        public IEnumerable<FoodDetailsDTO> GetFoodDetailsByLogId(int log_id)
+        {
+            List<FoodDetailsDTO> foodDetailsDTOs = new List<FoodDetailsDTO>();
+            var foodDetails = _consumedFoods.GetFoodDetailsByLogId(log_id);
+            foreach (var item in foodDetails)
+            {
+                foodDetailsDTOs.Add(new FoodDetailsDTO
+                {
+                    log_id = item.log_id,
+                    food_id = item.food_id,
+                    food_name = item.food_name,
+                    quantity = item.quantity,
+                    total_energy_kcal = item.total_energy_kcal,
+                    log_date = item.log_date,
+                    total_carbs_g = item.total_carbs_g,
+                    total_protein_g = item.total_protein_g,
+                    total_fat_g = item.total_fat_g,
+                    total_fiber_g = item.total_fiber_g,
+                    total_calcium_mg = item.total_calcium_mg,
+                    total_iron_mg = item.total_iron_mg,
+                    total_natrium_mg = item.total_natrium_mg
+                });
+            }
+            return foodDetailsDTOs;
+        }
+
         public IEnumerable<GetFoodInformationByLogIDTO> GetFoodInformationByLogID(int log_id)
         {
             List<GetFoodInformationByLogIDTO> getFoodInformationByLogIDTOs = new List<GetFoodInformationByLogIDTO>();

@@ -20,6 +20,10 @@ namespace NutriaryWebApp.BLL.Interfaces
 
         IEnumerable<GetFoodInformationByLogIDTO> GetFoodInformationByLogID(int log_id);
 
+        IEnumerable<FoodDetailsDTO> GetFoodDetailsByLogId(int log_id); 
+
+
+
         //IEnumerable<GetAllFoodDTO> GetAllFood();
 
 

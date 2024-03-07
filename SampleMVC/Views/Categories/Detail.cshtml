@@ -1,0 +1,69 @@
+@model IEnumerable<NutriaryWebApp.BLL.DTOs.FoodDetailsDTO>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Detail Category</title>
+</head>
+
+<body>
+    <div class="row">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">About</h1>
+        </div>
+
+        <div class="col-lg-12">
+            <!-- Basic Card Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">About Page</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Log ID</th>
+                                <th>Log Date</th>
+                                <th>Food ID</th>
+                                <th>Food Name</th>
+                                <th>Calories</th>
+                                <th>Quantity</th>
+                                <th>Carbohydrates (gr)</th>
+                                <th>Protein (gr)</th>
+                                <th>Calcium</th>
+                                <th>Fat</th>
+                                <th>Natrium</th>
+                                <th>Fiber</th>
+                                <th>Iron</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var food in Model)
+                            {
+                                <tr>
+                                    <td>@food.log_id</td>
+                                    <td>@food.log_date</td>
+                                    <td>@food.food_id</td>
+                                    <td>@food.food_name</td>
+                                    <td>@food.total_energy_kcal</td>
+                                    <td>@food.quantity</td>
+                                    <td>@food.total_carbs_g</td>
+                                    <td>@food.total_protein_g</td>
+                                    <td>@food.total_calcium_mg</td>
+                                    <td>@food.total_fat_g</td>
+                                    <td>@food.total_natrium_mg</td>
+                                    <td>@food.total_fiber_g</td>
+                                    <td>@food.total_iron_mg</td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

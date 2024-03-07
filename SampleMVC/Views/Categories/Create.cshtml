@@ -1,0 +1,49 @@
+@{
+
+}
+@model IEnumerable<NutriaryWebApp.BLL.DTOs.FoodNameListDTO>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create Category</title>
+</head>
+
+<body>
+    <h1>Create Category</h1>
+    <div class="card shadow mb-4">
+        <div class="card-header">
+            <h4 class="m-0 font-weight-bold text-primary">Create Category</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" action="/Categories/Create">
+                <div class="form-group row">
+                    <div class="col-lg-12">
+                        <div>
+                            <label for="food_name">Food name : </label>
+                            <select class="form-control" type="text" id="food_name" name="food_name"
+                                placeholder="Food Name" >
+                                @foreach (var item in Model)
+                                {
+                                    <option value="@item.food_name">@item.food_name</option>
+                                }
+                            </select>
+                        </div>
+                        <div>
+                            <label for="quantity">Food Quantity : </label>
+                            <input class="form-control form-control-user" type="text" id="quantity" name="quantity"
+                                placeholder="Insert food quantity" />
+                        </div>
+                        <br />
+                        <div>
+                            <input class="btn btn-primary" type="submit" value="Insert food consumption" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

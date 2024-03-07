@@ -11,10 +11,10 @@ namespace NutriaryWebApp.DAL.DAL
 {
     public class UserProfileDAL : IUserProfile
     {
-        private string GetConnectionString()
+        private string GetConnectionString()    
         {
             //return @"Data Source=BSINB23L011\BSISQLEXPRESS;Initial Catalog=NutriaryDatabase;Integrated Security=True;TrustServerCertificate=True";
-            return ConfigurationManager.ConnectionStrings["NutriaryDatabaseConnectionString"].ConnectionString;
+            return Helper.GetConnectionString();
         }
         public void AddUserProfile(AddUserProfileBO userProfile)
         {

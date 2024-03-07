@@ -32,7 +32,7 @@ namespace NutriaryWebApp.DAL.DAL
         private string GetConnectionString()
         {
             //return @"Data Source=BSINB23L011\BSISQLEXPRESS;Initial Catalog=NutriaryDatabase;Integrated Security=True;TrustServerCertificate=True";
-            return ConfigurationManager.ConnectionStrings["NutriaryDatabaseConnectionString"].ConnectionString;
+            return Helper.GetConnectionString();
         }
 
     }

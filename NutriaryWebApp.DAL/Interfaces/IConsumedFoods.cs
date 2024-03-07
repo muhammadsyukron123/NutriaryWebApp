@@ -21,6 +21,8 @@ namespace NutriaryWebApp.DAL.Interfaces
 
         IEnumerable<GetFoodInformationByLogID> GetFoodInformationByLogID(int log_id);
 
+        IEnumerable<FoodDetails> GetFoodDetailsByLogId(int log_id);
+
         //IEnumerable<GetAllFood> GetAllFood();
 
         //IEnumerable<ConsumptionDate> consumptionDates(int userID);

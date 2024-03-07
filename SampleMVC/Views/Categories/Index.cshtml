@@ -1,0 +1,148 @@
+@* @page
+@model SampleMVC.Views.Categories.Index
+@{
+ViewData["Title"] = "Index";
+} *@
+
+@model IEnumerable<NutriaryWebApp.BLL.DTOs.ConsumedFoodsDTO>
+
+@{
+    if (ViewData["Users"] == null)
+    {
+        ViewData["Users"] = new List<SampleMVC.Models.User>();
+    }
+
+
+    var users = ViewData["Users"] as List<SampleMVC.Models.User>;
+}
+
+<h1>List of Food Consumption</h1>
+
+<div class="col-lg-12">
+    <!-- Basic Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Food Consumption</h6>
+        </div>
+        <div class="card-body">
+            @*  <table class="table">
+            <thead>
+            <tr>
+            <th>UserID</th>
+            <th>Username</th>
+            </tr>
+            </thead>
+            <tbody>
+            @if (users.Count == 0)
+            {
+            <tr>
+            <td colspan="2">No Users</td>
+            </tr>
+            }
+            else
+            {
+            foreach (var user in users)
+            {
+            <tr>
+            <td>@user.UserId</td>
+            <td>@user.Username</td>
+            </tr>
+            }
+            }
+            </tbody>
+            </table>
+
+            <br /> *@
+
+            <form method="post" action="/Categories/Search">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" id="search" name="Search" class="form-control" placeholder="search category name" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            <br />
+            <br />
+            <button class="btn btn-primary" onclick="location.href='/Categories/Create'">Create Categories</button>
+            <br />
+            <br />
+            <div>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Log ID</th>
+                            <th>Food Name</th>
+                            <th>Quantity</th>
+                            <th>Calories</th>
+                            <th>Log Date</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var foods in Model)
+                        {
+                            <tr>
+                                <td>@foods.log_id</td>
+                                <td>@foods.food_name</td>
+                                <td>@string.Format("{0:0.00}", foods.quantity)</td>
+                                <td>@string.Format("{0:0.00}", foods.total_energy_kcal)</td>
+                                <td>@foods.log_date.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <a href="/Categories/Detail/@foods.log_id" class="btn btn-success">
+                                        <i class="fa fa-eye"></i> Select
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/Categories/Edit/@foods.log_id" class="btn btn-warning">
+                                        <i class="fa fa-pen"></i> Edit
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/Categories/Delete/@foods.log_id" class="btn btn-danger">
+                                        <i class="fa fa-trash"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Food Consumption</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="ddFoodName">Food Name :</label>
+                        <asp:DropDownList ID="ddFoodName" CssClass="form-control" runat="server" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtQuantity">Food Quantity :</label>
+                        <asp:TextBox ID="txtFoodQuantity" runat="server" CssClass="form-control" placeholder="Enter Food Quantity (gram)" />
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <asp:Button Text="Submit" ID="btnAddFoodConsumption" CssClass="btn btn-primary btn-sm" runat="server" OnClick="btnAddFoodConsumption_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

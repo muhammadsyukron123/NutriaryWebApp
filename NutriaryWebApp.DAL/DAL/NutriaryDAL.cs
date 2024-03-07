@@ -16,7 +16,8 @@ namespace NutriaryWebApp.DAL.DAL
         private string GetConnectionString()
         {
             //return @"Data Source=BSINB23L011\BSISQLEXPRESS;Initial Catalog=NutriaryDatabase;Integrated Security=True;TrustServerCertificate=True";
-            return ConfigurationManager.ConnectionStrings["NutriaryDatabaseConnectionString"].ConnectionString;
+            //return ConfigurationManager.ConnectionStrings["NutriaryDatabaseConnectionString"].ConnectionString;
+            return Helper.GetConnectionString();
         }
         public void Create(ConsumedFoods obj)
         {
@@ -112,6 +113,17 @@ namespace NutriaryWebApp.DAL.DAL
                 var sqlSP = @"GetFoodInformationByLogId";
                 var param = new { log_id = log_id };
                 var results = conn.Query<GetFoodInformationByLogID>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
+                return results;
+            }
+        }
+
+        public IEnumerable<FoodDetails> GetFoodDetailsByLogId(int log_id)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                var sqlSP = @"usp_GetFoodDetailsByLogId";
+                var param = new { log_id = log_id };
+                var results = conn.Query<FoodDetails>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
                 return results;
             }
         }
