@@ -9,7 +9,8 @@ namespace NutriaryWebApp.BLL.Interfaces
     {
         void AddUserProfile(AddUserProfileDTO userProfile);
         IEnumerable<ViewUserProfileDTO> GetUserProfile(int user_id);
-        void UpdateUserProfile(UpdateUserProfileDTO userProfile);
-        void UpdateUserAccount(UpdateUserAccountDTO userAccount);
+        void UpdateUserProfile(UpdateUserProfileDTO updateUserProfileDTO);
+        void UpdateUserAccount(UpdateUserAccountDTO updateUserAccountDTO);
+        UserDTO GetUserAccount(int user_id);
     }
 }

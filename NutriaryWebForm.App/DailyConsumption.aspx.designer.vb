@@ -68,6 +68,24 @@ Partial Public Class DailyConsumption
     Protected WithEvents btnAddFoodConsumption As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''lvFoodDetails control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lvFoodDetails As Global.System.Web.UI.WebControls.ListView
+
+    '''<summary>
+    '''btCloseViewModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btCloseViewModal As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''tbLogID control.
     '''</summary>
     '''<remarks>

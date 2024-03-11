@@ -22,6 +22,12 @@ namespace NutriaryWebApp.BLL.Interfaces
 
         IEnumerable<FoodDetailsDTO> GetFoodDetailsByLogId(int log_id); 
 
+        DailyTotalNutritionDTO GetDailyTotalNutrition(int userID);
+
+        DailyTotalNutritionDTO GetDailyTotalNutritionByDate(int userID, DateTime date);
+
+        IEnumerable<DailyFoodMenuDTO> GetDailyFoodMenuOnDate(int userID, DateTime date);
+
 
 
         //IEnumerable<GetAllFoodDTO> GetAllFood();

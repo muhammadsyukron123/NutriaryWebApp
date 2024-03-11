@@ -8,7 +8,7 @@ Public Class Login
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If Session("UserID") IsNot Nothing Then
-            Response.Redirect("DailyConsumption.aspx")
+            Response.Redirect("Dashboard.aspx")
         End If
     End Sub
 
@@ -22,7 +22,7 @@ Public Class Login
                 Session("Username") = result.username
                 Session("FirstName") = result.firstname
                 Session("LastName") = result.lastname
-                Response.Redirect("DailyConsumption.aspx")
+                Response.Redirect("Dashboard.aspx")
                 ltLoginStatus.Text = "<span class='alert alert-success'>Login Successful</span><br/><br/>"
             Else
                 ltLoginStatus.Text = "<span class='alert alert-danger'>Invalid Email or Password</span><br/><br/>"

@@ -1,5 +1,6 @@
 ﻿using NutriaryWebApp.BLL.DTOs;
 using NutriaryWebApp.BLL.Interfaces;
+using NutriaryWebApp.BO.BO;
 using NutriaryWebApp.DAL.DAL;
 using NutriaryWebApp.DAL.Interfaces;
 using System;
@@ -54,6 +55,103 @@ namespace NutriaryWebApp.BLL.BLL
                 });
             }
             return foodNameLists;
+        }
+
+        public IEnumerable<DailyFoodMenuDTO> GetDailyFoodMenuOnDate(int userID, DateTime date)
+        {
+            List<DailyFoodMenuDTO> dailyFoodMenuDTOs = new List<DailyFoodMenuDTO>();
+            var dailyFoodMenu = _consumedFoods.GetDailyFoodMenuOnDate(userID, date);
+            foreach (var item in dailyFoodMenu)
+            {
+                dailyFoodMenuDTOs.Add(new DailyFoodMenuDTO
+                {
+                    log_id = item.log_id,
+                    quantity = item.quantity,
+                    log_date = item.log_date,
+                    food_name = item.food_name,
+                    energy_kal = item.energy_kal,
+                    protein_g = item.protein_g,
+                    fat_g = item.fat_g,
+                    carbs_g = item.carbs_g,
+                    fiber_g = item.fiber_g,
+                    calcium_mg = item.calcium_mg,
+                    fe_mg = item.fe_mg,
+                    natrium_mg = item.natrium_mg
+                });
+            }
+            return dailyFoodMenuDTOs;
+        }
+
+        public DailyTotalNutritionDTO GetDailyTotalNutrition(int userID)
+        {
+            DailyTotalNutritionDTO dailyTotalNutritionDTO = new DailyTotalNutritionDTO();
+            var dailyTotalNutrition = _consumedFoods.GetDailyTotalNutrition(userID);
+
+            if (dailyTotalNutrition == null)
+            {
+                dailyTotalNutritionDTO.total_energy_kal = 0;
+                dailyTotalNutritionDTO.total_protein_g = 0;
+                dailyTotalNutritionDTO.total_fat_g = 0;
+                dailyTotalNutritionDTO.total_carbs_g = 0;
+                dailyTotalNutritionDTO.total_fiber_g = 0;
+                dailyTotalNutritionDTO.total_calcium_mg = 0;
+                dailyTotalNutritionDTO.total_energy_kal = 0;
+                dailyTotalNutritionDTO.total_natrium_mg = 0;
+                dailyTotalNutritionDTO.total_bmr = 0;
+                dailyTotalNutritionDTO.remaining_bmr = 0;
+                return dailyTotalNutritionDTO;
+            }
+            else
+            {
+                dailyTotalNutritionDTO.total_energy_kal = dailyTotalNutrition.total_energy_kal;
+                dailyTotalNutritionDTO.total_protein_g = dailyTotalNutrition.total_protein_g;
+                dailyTotalNutritionDTO.total_fat_g = dailyTotalNutrition.total_fat_g;
+                dailyTotalNutritionDTO.total_carbs_g = dailyTotalNutrition.total_carbs_g;
+                dailyTotalNutritionDTO.total_fiber_g = dailyTotalNutrition.total_fiber_g;
+                dailyTotalNutritionDTO.total_calcium_mg = dailyTotalNutrition.total_calcium_mg;
+                dailyTotalNutritionDTO.total_energy_kal = dailyTotalNutrition.total_energy_kal;
+                dailyTotalNutritionDTO.total_natrium_mg = dailyTotalNutrition.total_natrium_mg;
+                dailyTotalNutritionDTO.total_bmr = dailyTotalNutrition.total_bmr;
+                dailyTotalNutritionDTO.remaining_bmr = dailyTotalNutrition.remaining_bmr;
+
+                return dailyTotalNutritionDTO;
+            }
+        }
+
+        public DailyTotalNutritionDTO GetDailyTotalNutritionByDate(int userID, DateTime date)
+        {
+            DailyTotalNutritionDTO dailyTotalNutritionDTO = new DailyTotalNutritionDTO();
+            var dailyTotalNutritionByDate = _consumedFoods.GetDailyTotalNutritionByDate(userID, date);
+
+            if (dailyTotalNutritionByDate == null)
+            {
+                dailyTotalNutritionDTO.total_energy_kal = 0;
+                dailyTotalNutritionDTO.total_protein_g = 0;
+                dailyTotalNutritionDTO.total_fat_g = 0;
+                dailyTotalNutritionDTO.total_carbs_g = 0;
+                dailyTotalNutritionDTO.total_fiber_g = 0;
+                dailyTotalNutritionDTO.total_calcium_mg = 0;
+                dailyTotalNutritionDTO.total_energy_kal = 0;
+                dailyTotalNutritionDTO.total_natrium_mg = 0;
+                dailyTotalNutritionDTO.total_bmr = 0;
+                dailyTotalNutritionDTO.remaining_bmr = 0;
+                return dailyTotalNutritionDTO;
+            }
+            else
+            {
+                dailyTotalNutritionDTO.total_energy_kal = dailyTotalNutritionByDate.total_energy_kal;
+                dailyTotalNutritionDTO.total_protein_g = dailyTotalNutritionByDate.total_protein_g;
+                dailyTotalNutritionDTO.total_fat_g = dailyTotalNutritionByDate.total_fat_g;
+                dailyTotalNutritionDTO.total_carbs_g = dailyTotalNutritionByDate.total_carbs_g;
+                dailyTotalNutritionDTO.total_fiber_g = dailyTotalNutritionByDate.total_fiber_g;
+                dailyTotalNutritionDTO.total_calcium_mg = dailyTotalNutritionByDate.total_calcium_mg;
+                dailyTotalNutritionDTO.total_energy_kal = dailyTotalNutritionByDate.total_energy_kal;
+                dailyTotalNutritionDTO.total_natrium_mg = dailyTotalNutritionByDate.total_natrium_mg;
+                dailyTotalNutritionDTO.total_bmr = dailyTotalNutritionByDate.total_bmr;
+                dailyTotalNutritionDTO.remaining_bmr = dailyTotalNutritionByDate.remaining_bmr;
+
+                return dailyTotalNutritionDTO;
+            }
         }
 
         public IEnumerable<FoodDetailsDTO> GetFoodDetailsByLogId(int log_id)

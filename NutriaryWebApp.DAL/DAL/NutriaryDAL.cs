@@ -127,5 +127,38 @@ namespace NutriaryWebApp.DAL.DAL
                 return results;
             }
         }
+
+        public DailyTotalNutrition GetDailyTotalNutrition(int userID)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                var sqlSP = @"usp_GetTotalNutritionPerDay";
+                var param = new { user_id = userID };
+                var results = conn.QueryFirstOrDefault<DailyTotalNutrition>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
+                return results;
+            }
+        }
+
+        public IEnumerable<DailyFoodMenu> GetDailyFoodMenuOnDate(int userID, DateTime date)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                var sqlSP = @"usp_GetDailyFoodMenu";
+                var param = new { user_id = userID, log_date = date };
+                var results = conn.Query<DailyFoodMenu>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
+                return results;
+            }
+        }
+
+        public DailyTotalNutrition GetDailyTotalNutritionByDate(int userID, DateTime date)
+        {
+            using(SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                var sqlSP = @"usp_GetTotalNutritionByDate";
+                var param = new { user_id = userID, log_date = date };
+                var results = conn.QueryFirstOrDefault<DailyTotalNutrition>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
+                return results;
+            }
+        }
     }
 }

@@ -195,32 +195,31 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="p-lg-3">
-                            <form class="user">
                                 <asp:Literal ID="ltUserProfileUpdateModal" runat="server" />
                                 <div class="form-group row-cols-1">
                                     <asp:Label CssClass="p-3" Text="Choose your gender" Font-Size="Small" runat="server" />
-                                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control dropdown rounded-pill" Font-Size="Small" Height="50px" placeholder="Choose your gender">
+                                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control" Font-Size="Small" placeholder="Choose your gender">
                                         <asp:ListItem Text="Male" Value="Male" />
                                         <asp:ListItem Text="Female" Value="Female" />
                                     </asp:DropDownList>
                                 </div>
                                 <div class="form-group row-cols-1">
                                     <asp:Label CssClass="p-3" Text="Age" Font-Size="Small" runat="server" />
-                                    <asp:TextBox ID="tbModalAge" TextMode="Number" runat="server" CssClass="form-control form-control-user" placeholder="Age" />
+                                    <asp:TextBox ID="tbModalAge" runat="server" CssClass="form-control" placeholder="Age" />
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <asp:Label CssClass="p-3" Text="Weight (kg)" Font-Size="Small" runat="server" />
-                                        <asp:TextBox ID="tbModalWeight" runat="server" CssClass="form-control form-control-user" placeholder="Weight" />
+                                        <asp:TextBox ID="tbModalWeight" runat="server" CssClass="form-control" placeholder="Weight" />
                                     </div>
                                     <div class="col-sm-6">
                                         <asp:Label CssClass="p-3" Text="Height (cm)" Font-Size="Small" runat="server" />
-                                        <asp:TextBox ID="tbModalHeight" runat="server" CssClass="form-control form-control-user" placeholder="Height" />
+                                        <asp:TextBox ID="tbModalHeight" runat="server" CssClass="form-control" placeholder="Height" />
                                     </div>
                                 </div>
                                 <div class="form-group row-cols-1">
                                     <asp:Label CssClass="p-3" Text="Choose your activity level" Font-Size="Small" runat="server" />
-                                    <asp:DropDownList ID="ddlActivityLevel" CssClass="form-control rounded-pill dropdown" Font-Size="Small" Height="50px" runat="server" placeholder="Choose your activity level">
+                                    <asp:DropDownList ID="ddlActivityLevel" CssClass="form-control" Font-Size="Small" runat="server" placeholder="Choose your activity level">
                                         <asp:ListItem Text="Sedentary" Value="1" />
                                         <asp:ListItem Text="Lightly Active" Value="2" />
                                         <asp:ListItem Text="Moderately Active" Value="3" />
@@ -230,13 +229,12 @@
                                 </div>
                                 <div class="form-group row-cols-1">
                                     <asp:Label CssClass="p-3" Text="Choose your goal" Font-Size="Small" runat="server" />
-                                    <asp:DropDownList ID="ddlTargetGoal" CssClass="form-control rounded-pill dropdown" Font-Size="Small" Height="50px" runat="server" placeholder="Choose your target goal">
+                                    <asp:DropDownList ID="ddlTargetGoal" CssClass="form-control" Font-Size="Small" runat="server" placeholder="Choose your target goal">
                                         <asp:ListItem Text="Weight gain" Value="1" />
                                         <asp:ListItem Text="Maintain weight" Value="2" />
                                         <asp:ListItem Text="Weight loss" Value="3" />
                                     </asp:DropDownList>
                                 </div>
-                            </form>
                         </div>
                     </div>
 
@@ -263,28 +261,26 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="p-lg-3">
-                            <form class="user">
                                 <asp:Literal ID="ltUserAccountUpdateModal" runat="server" />
 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <asp:Label CssClass="p-3" Text="First Name" Font-Size="Small" runat="server" />
-                                        <asp:TextBox ID="tbModalFirstName" runat="server" CssClass="form-control form-control-user" placeholder="First Name" />
+                                        <asp:TextBox ID="tbModalFirstName" runat="server" CssClass="form-control" placeholder="First Name" />
                                     </div>
                                     <div class="col-sm-6">
                                         <asp:Label CssClass="p-3" Text="Last Name" Font-Size="Small" runat="server" />
-                                        <asp:TextBox ID="tbModalLastName" runat="server" CssClass="form-control form-control-user" placeholder="Last Name" />
+                                        <asp:TextBox ID="tbModalLastName" runat="server" CssClass="form-control" placeholder="Last Name" />
                                     </div>
                                 </div>
                                 <div class="form-group row-cols-1">
                                     <asp:Label CssClass="p-3" Text="Username" Font-Size="Small" runat="server" />
-                                    <asp:TextBox ID="tbModalUsername" runat="server" CssClass="form-control form-control-user" placeholder="Username" />
+                                    <asp:TextBox ID="tbModalUsername" runat="server" CssClass="form-control" placeholder="Username" />
                                 </div>
                                 <div class="form-group row-cols-1">
                                     <asp:Label CssClass="p-3" Text="Email" Font-Size="Small" runat="server" />
-                                    <asp:TextBox ID="tbModalEmail" runat="server" CssClass="form-control form-control-user" placeholder="Email Address" />
+                                    <asp:TextBox ID="tbModalEmail" runat="server" CssClass="form-control" placeholder="Email Address" />
                                 </div>
-                            </form>
                         </div>
                     </div>
 

@@ -31,6 +31,8 @@ Public Class DailyConsumption
 
     End Sub
 
+
+
     Sub LoadFoodEditModalForm(logID As Integer)
         Dim result = _consumedFoodsBLL.GetFoodInformationByLogID(logID)
 
@@ -53,14 +55,16 @@ Public Class DailyConsumption
         Return _consumedFoodsBLL.GetFoodNutritionByID(userId)
     End Function
 
+    Public Function GetFoodDetailsByLogID(logID As Integer) As List(Of FoodDetailsDTO)
+        Return _consumedFoodsBLL.GetFoodDetailsByLogId(logID)
+    End Function
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
             LoadFoodList()
             ClearModal()
             PreventBackLogin()
         End If
-
-
     End Sub
 
     Protected Sub btnAddFoodConsumption_Click(sender As Object, e As EventArgs)
@@ -71,7 +75,7 @@ Public Class DailyConsumption
             LoadFoodList()
             ltMessage.Text = "<span class='alert alert-success'>Food Consumption Added</span><br/><br/>"
         Catch ex As Exception
-
+            ltMessage.Text = "<span class='alert alert-danger'>Error: " & ex.Message & "</span><br/><br/>"
         End Try
     End Sub
 
@@ -82,14 +86,11 @@ Public Class DailyConsumption
 
     End Sub
 
-    Protected Sub lvConsumedFood_SelectedIndexChanging(sender As Object, e As ListViewSelectEventArgs)
-
-
-    End Sub
 
     Protected Sub lvConsumedFood_ItemDeleting(sender As Object, e As ListViewDeleteEventArgs)
         Dim logId As Integer = Convert.ToInt32(lvConsumedFood.DataKeys(e.ItemIndex).Value)
         Try
+            'add javascript browser confirmation dialog here
             _consumedFoodsBLL.DeleteFoodLog(logId)
             LoadFoodList()
             ltMessage.Text = "<span class='alert alert-success'>Food Consumption Deleted</span><br/><br/>"
@@ -112,4 +113,19 @@ Public Class DailyConsumption
         End Try
     End Sub
 
+    Protected Sub lnkDetails_Click(sender As Object, e As EventArgs)
+        Dim lnkDetails As LinkButton = CType(sender, LinkButton)
+        Dim logId As String = lnkDetails.CommandArgument
+        lvFoodDetails.DataSource = GetFoodDetailsByLogID(logId)
+        lvFoodDetails.DataBind()
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenModalScript", "$(window).on('load',function(){$('#viewModal').modal('show');})", True)
+    End Sub
+
+    Protected Sub btCloseViewModal_Click(sender As Object, e As EventArgs)
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "CloseModalScript", "$('#viewModal').modal('hide');", True)
+    End Sub
+
+    Protected Sub lvConsumedFood_SelectedIndexChanging(sender As Object, e As ListViewSelectEventArgs)
+
+    End Sub
 End Class

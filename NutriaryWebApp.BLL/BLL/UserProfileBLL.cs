@@ -1,10 +1,12 @@
-﻿using NutriaryWebApp.BLL.DTOs;
+﻿using Azure;
+using NutriaryWebApp.BLL.DTOs;
 using NutriaryWebApp.BLL.Interfaces;
 using NutriaryWebApp.BO.BO;
 using NutriaryWebApp.DAL.DAL;
 using NutriaryWebApp.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace NutriaryWebApp.BLL.BLL
@@ -39,9 +41,27 @@ namespace NutriaryWebApp.BLL.BLL
             }
         }
 
+        public UserDTO GetUserAccount(int user_id)
+        {
+            UserDTO user = new UserDTO();
+            var getUserAccount = _addUserProfile.GetUserAccount(user_id);
+
+            if (getUserAccount == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            user.user_id = getUserAccount.user_id;
+            user.firstname = getUserAccount.firstname;
+            user.lastname = getUserAccount.lastname;
+            user.username = getUserAccount.username;
+            user.email = getUserAccount.email;
+            return user;
+        }
+
         public IEnumerable<ViewUserProfileDTO> GetUserProfile(int user_id)
         {
-            
+
             try
             {
                 List<ViewUserProfileDTO> viewUserProfile = new List<ViewUserProfileDTO>();
@@ -60,7 +80,7 @@ namespace NutriaryWebApp.BLL.BLL
                         height = item.height,
                         TargetGoal = item.TargetGoal,
                         ActivityLevel = item.ActivityLevel
-                        
+
                     });
                 }
                 return viewUserProfile;
@@ -71,17 +91,17 @@ namespace NutriaryWebApp.BLL.BLL
             }
         }
 
-        public void UpdateUserAccount(UpdateUserAccountDTO userAccount)
+        public void UpdateUserAccount(UpdateUserAccountDTO updateUserAccountDTO)
         {
             try
             {
                 var updateUserAccount = new UpdateUserAccountBO
                 {
-                    user_id = userAccount.user_id,
-                    firstname = userAccount.firstname,
-                    lastname = userAccount.lastname,
-                    username = userAccount.username,
-                    email = userAccount.email
+                    user_id = updateUserAccountDTO.user_id,
+                    firstname = updateUserAccountDTO.firstname,
+                    lastname = updateUserAccountDTO.lastname,
+                    username = updateUserAccountDTO.username,
+                    email = updateUserAccountDTO.email
                 };
                 _addUserProfile.UpdateUserAccount(updateUserAccount);
             }
@@ -91,19 +111,19 @@ namespace NutriaryWebApp.BLL.BLL
             }
         }
 
-        public void UpdateUserProfile(UpdateUserProfileDTO userProfile)
+        public void UpdateUserProfile(UpdateUserProfileDTO updateUserProfileDTO)
         {
             try
             {
                 var updateUserProfile = new UpdateUserProfileBO
                 {
-                    user_id = userProfile.user_id,
-                    gender = userProfile.gender,
-                    age = userProfile.age,
-                    weight = userProfile.weight,
-                    height = userProfile.height,
-                    ActivityLevel = userProfile.ActivityLevel,
-                    TargetGoal = userProfile.TargetGoal
+                    user_id = updateUserProfileDTO.user_id,
+                    gender = updateUserProfileDTO.gender,
+                    age = updateUserProfileDTO.age,
+                    weight = updateUserProfileDTO.weight,
+                    height = updateUserProfileDTO.height,
+                    ActivityLevel = updateUserProfileDTO.ActivityLevel,
+                    TargetGoal = updateUserProfileDTO.TargetGoal
                 };
                 _addUserProfile.UpdateUserProfile(updateUserProfile);
             }
@@ -111,6 +131,6 @@ namespace NutriaryWebApp.BLL.BLL
             {
                 throw ex;
             }
-        }
+}
     }
 }

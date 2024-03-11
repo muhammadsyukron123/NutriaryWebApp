@@ -9,8 +9,9 @@ namespace NutriaryWebApp.DAL.Interfaces
     {
         void AddUserProfile(AddUserProfileBO userProfile);
         IEnumerable<UserProfileBO> GetUserProfile(int user_id);
-        void UpdateUserProfile(UpdateUserProfileBO userProfile);
+        void UpdateUserProfile(UpdateUserProfileBO updateUserProfileBO);
 
-        void UpdateUserAccount(UpdateUserAccountBO userAccount);
+        User GetUserAccount(int user_id);
+        void UpdateUserAccount(UpdateUserAccountBO updateUserAccountBO);
     }
 }
