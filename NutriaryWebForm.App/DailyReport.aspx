@@ -6,77 +6,6 @@
     </div>
     <div class="row">
 
-        <div class="col-lg-12">
-            <!-- Basic Card Example -->
-            <div class="card shadow mb-4">
-                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
-                    role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                    <h6 class="m-0 font-weight-bold text-primary">Your Daily Food Consumption</h6>
-                </a>
-                <!-- Card Content - Collapse -->
-                <div class="collapse show" id="collapseCardExample">
-                    <div class="card-body">
-                        <div class="form-group form-inline">
-                            <asp:Label ID="lblDate" runat="server" Text="Choose the date" CssClass="col-sm-2 control-label" AssociatedControlID="txtDate"></asp:Label>
-                            <br />
-                            <asp:TextBox ID="txtDate" TextMode="Date" runat="server" CssClass="form-control" placeholder="Enter Date" Width="300px"></asp:TextBox>
-                            &nbsp;
-    &nbsp;
-    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
-                        </div>
-                        <h6 class="m-0 font-weight-light text-primary">This is your foods consumption on <%= If(ViewState("LogDate") IsNot Nothing, DateTime.Parse(ViewState("LogDate").ToString()).ToString("d"), "") %></h6>
-                        <br />
-                        <table class="table table-hover table-responsive">
-                            <asp:ListView ID="lvDailyReport" runat="server">
-                                <LayoutTemplate>
-                                    <thead>
-                                        <tr>
-                                            <th class="hidden">Log ID</th>
-                                            <th>Food Name</th>
-                                            <th>Quantity</th>
-                                            <th>Log Date</th>
-                                            <th>Energy (kcal)</th>
-                                            <th>Protein (g)</th>
-                                            <th>Fat (g)</th>
-                                            <th>Carbohydrate (g)</th>
-                                            <th>Fiber (g)</th>
-                                            <th>Calcium (mg)</th>
-                                            <th>Iron (mg)</th>
-                                            <th>Natrium (mg)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr id="itemPlaceholder" runat="server"></tr>
-                                    </tbody>
-                                </LayoutTemplate>
-                                <ItemTemplate>
-                                    <tr>
-                                        <td class="hidden"><%# Eval("log_id") %></td>
-                                        <td><%# Eval("food_name") %></td>
-                                        <td><%# Eval("quantity") %></td>
-                                        <td><%# Eval("log_date", "{0:d}") %></td>
-                                        <td><%# Eval("energy_kal", "{0:0.00}") %></td>
-                                        <td><%# Eval("protein_g", "{0:0.00}") %></td>
-                                        <td><%# Eval("fat_g", "{0:0.00}") %></td>
-                                        <td><%# Eval("carbs_g", "{0:0.00}") %></td>
-                                        <td><%# Eval("fiber_g", "{0:0.00}") %></td>
-                                        <td><%# Eval("calcium_mg", "{0:0.00}") %></td>
-                                        <td><%# Eval("fe_mg", "{0:0.00}") %></td>
-                                        <td><%# Eval("natrium_mg", "{0:0.00}") %></td>
-                                    </tr>
-                                </ItemTemplate>
-                                <EmptyDataTemplate>
-                                    <tr>
-                                        <td colspan="12">No data found on the chosen date</td>
-                                    </tr>
-                                </EmptyDataTemplate>
-                            </asp:ListView>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
-        </div>
 
         <div class="col-lg-12">
             <div class="card shadow mb-4">
@@ -88,6 +17,18 @@
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardSummary">
                     <div class="card-body">
+                        <div class="form-group form-inline">
+                            <asp:Label ID="lblDate" runat="server" Text="Choose the date" CssClass="control-label" AssociatedControlID="txtDate"></asp:Label>
+                            &nbsp;
+                            &nbsp;
+                            <asp:TextBox ID="txtDate" TextMode="Date" runat="server" CssClass="form-control" placeholder="Enter Date" Width="300px"></asp:TextBox>
+                            &nbsp;
+                            &nbsp;
+                            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
+                            &nbsp;
+                            &nbsp;
+                            <asp:Literal ID="litError" runat="server" ></asp:Literal>
+                        </div>
                         <h6 class="m-0 font-weight-light text-primary">This is your foods consumption summary on <%= If(ViewState("LogDate") IsNot Nothing, DateTime.Parse(ViewState("LogDate").ToString()).ToString("d"), "") %></h6>
                         <br />
                         <div class="row">
@@ -115,7 +56,7 @@
                                                                 Else
                                                                     percentage = 0
                                                                 End If
-                                        %>
+                                %>
                                                                 style="width: <%=percentage%>%" aria-valuenow="<%= ViewState("TotalCalories") %>" aria-valuemin="0"
                                                                 aria-valuemax="<%= ViewState("TotalBMR") %>">
                                                             </div>
@@ -187,6 +128,75 @@
                 </div>
             </div>
         </div>
+
+
+
+        <div class="col-lg-12">
+            <!-- Basic Card Example -->
+            <div class="card shadow mb-4">
+                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+                    role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <h6 class="m-0 font-weight-bold text-primary">Your Daily Food Consumption</h6>
+                </a>
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="collapseCardExample">
+                    <div class="card-body">
+
+                        <h6 class="m-0 font-weight-light text-primary">This is your foods consumption on <%= If(ViewState("LogDate") IsNot Nothing, DateTime.Parse(ViewState("LogDate").ToString()).ToString("d"), "") %></h6>
+                        <br />
+                        <table class="table table-hover table-responsive" id="foodTable">
+                            <asp:ListView ID="lvDailyReport" runat="server">
+                                <LayoutTemplate>
+                                    <thead>
+                                        <tr>
+                                            <th class="visually-hidden">Log ID</th>
+                                            <th>Food Name</th>
+                                            <th>Quantity</th>
+                                            <th>Log Date</th>
+                                            <th>Energy (kcal)</th>
+                                            <th>Protein (g)</th>
+                                            <th>Fat (g)</th>
+                                            <th>Carbohydrate (g)</th>
+                                            <th>Fiber (g)</th>
+                                            <th>Calcium (mg)</th>
+                                            <th>Iron (mg)</th>
+                                            <th>Natrium (mg)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="itemPlaceholder" runat="server"></tr>
+                                    </tbody>
+                                </LayoutTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td class="visually-hidden"><%# Eval("log_id") %></td>
+                                        <td><%# Eval("food_name") %></td>
+                                        <td><%# Eval("quantity") %></td>
+                                        <td><%# Eval("log_date", "{0:d}") %></td>
+                                        <td><%# Eval("energy_kal", "{0:0.00}") %></td>
+                                        <td><%# Eval("protein_g", "{0:0.00}") %></td>
+                                        <td><%# Eval("fat_g", "{0:0.00}") %></td>
+                                        <td><%# Eval("carbs_g", "{0:0.00}") %></td>
+                                        <td><%# Eval("fiber_g", "{0:0.00}") %></td>
+                                        <td><%# Eval("calcium_mg", "{0:0.00}") %></td>
+                                        <td><%# Eval("fe_mg", "{0:0.00}") %></td>
+                                        <td><%# Eval("natrium_mg", "{0:0.00}") %></td>
+                                    </tr>
+                                </ItemTemplate>
+                                <EmptyDataTemplate>
+                                    <tr>
+                                        <td colspan="12">No data found on the chosen date</td>
+                                    </tr>
+                                </EmptyDataTemplate>
+                            </asp:ListView>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
 
     </div>
 

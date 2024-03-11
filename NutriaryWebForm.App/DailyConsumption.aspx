@@ -18,7 +18,7 @@
                     </button>
                     <asp:Label ID="lblSelectedIndex" runat="server" />
                     <br />
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="dailyConsumptionTable">
                         <asp:ListView ID="lvConsumedFood" runat="server" DataKeyNames="log_id" OnSelectedIndexChanged="lvConsumedFood_SelectedIndexChanged" OnSelectedIndexChanging="lvConsumedFood_SelectedIndexChanging" OnItemDeleting="lvConsumedFood_ItemDeleting">
                             <LayoutTemplate>
                                 <thead>

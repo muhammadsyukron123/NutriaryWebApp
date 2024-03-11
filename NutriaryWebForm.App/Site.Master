@@ -21,6 +21,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/Startbootstrap/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/Startbootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 
@@ -74,7 +75,7 @@
 
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    Interface
+                    Nutrition Tracking
                 </div>
 
                 <!-- Nav Item - Dashboard -->
@@ -103,6 +104,8 @@
 
                 <!-- Divider -->
                 <hr class="sidebar-divider">
+
+
             </ul>
             <!-- End of Sidebar -->
 
@@ -253,6 +256,9 @@
         <%: Scripts.Render("/StartBootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js") %>
         <%: Scripts.Render("/StartBootstrap/vendor/jquery-easing/jquery.easing.min.js") %>
         <%: Scripts.Render("/StartBootstrap/js/sb-admin-2.min.js") %>
+        <%: Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js") %>
+        <%: Scripts.Render("/Startbootstrap/vendor/datatables/jquery.dataTables.min.js") %>
+        <%: Scripts.Render("/Startbootstrap/vendor/datatables/dataTables.bootstrap4.min.js") %>
     </asp:PlaceHolder>
 </body>
 </html>

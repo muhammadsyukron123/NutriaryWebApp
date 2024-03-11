@@ -41,13 +41,13 @@ Partial Public Class DailyReport
     Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''lvDailyReport control.
+    '''litError control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lvDailyReport As Global.System.Web.UI.WebControls.ListView
+    Protected WithEvents litError As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
     '''NutritionChart control.
@@ -66,4 +66,13 @@ Partial Public Class DailyReport
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents PieChart1 As Global.AjaxControlToolkit.PieChart
+
+    '''<summary>
+    '''lvDailyReport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lvDailyReport As Global.System.Web.UI.WebControls.ListView
 End Class

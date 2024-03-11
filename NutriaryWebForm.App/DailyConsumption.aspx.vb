@@ -28,6 +28,8 @@ Public Class DailyConsumption
         ddFoodName.DataValueField = "food_name"
         ddFoodName.DataBind()
 
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "tablesorter", "$(document).ready(function() {$('#dailyConsumptionTable').DataTable();});", True)
+
 
     End Sub
 

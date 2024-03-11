@@ -8,6 +8,7 @@ Public Class DailyReport
             PreventBackLogin()
             LoadDailyFoodMenu()
             AssignPieChartData()
+
         End If
     End Sub
 
@@ -38,28 +39,44 @@ Public Class DailyReport
 
         lvDailyReport.DataSource = result
         lvDailyReport.DataBind()
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "tablesorter", "$(document).ready(function() {$('#foodTable').DataTable();});", True)
     End Sub
     Protected Sub btnSearch_Click(sender As Object, e As EventArgs)
-        Dim dateSelected As Date = Convert.ToDateTime(txtDate.Text)
-        Dim userId As Integer = Session("UserID")
-        Dim result = _consumedFoodsBLL.GetDailyFoodMenuOnDate(userId, dateSelected)
-        Dim summary = _consumedFoodsBLL.GetDailyTotalNutritionByDate(userId, dateSelected)
-        lvDailyReport.DataSource = result
-        lvDailyReport.DataBind()
+        If Not String.IsNullOrEmpty(txtDate.Text) Then
+            Dim dateSelected As Date
+            If Date.TryParse(txtDate.Text, dateSelected) Then
+                Dim userId As Integer = Session("UserID")
+                Dim result = _consumedFoodsBLL.GetDailyFoodMenuOnDate(userId, dateSelected)
+                Dim summary = _consumedFoodsBLL.GetDailyTotalNutritionByDate(userId, dateSelected)
+                lvDailyReport.DataSource = result
+                lvDailyReport.DataBind()
 
-        ViewState("LogDate") = dateSelected
-        ViewState("TotalCalories") = summary.total_energy_kal
-        ViewState("TotalProtein") = summary.total_protein_g
-        ViewState("TotalCarbs") = summary.total_carbs_g
-        ViewState("TotalFat") = summary.total_fat_g
-        ViewState("TotalFiber") = summary.total_fiber_g
-        ViewState("TotalCalcium") = summary.total_calcium_mg
-        ViewState("TotalIron") = summary.total_fe_mg
-        ViewState("TotalNatrium") = summary.total_natrium_mg
-        ViewState("TotalBMR") = summary.total_bmr
-        ViewState("RemainingBMR") = summary.remaining_bmr
+                ViewState("LogDate") = dateSelected
+                ViewState("TotalCalories") = summary.total_energy_kal
+                ViewState("TotalProtein") = summary.total_protein_g
+                ViewState("TotalCarbs") = summary.total_carbs_g
+                ViewState("TotalFat") = summary.total_fat_g
+                ViewState("TotalFiber") = summary.total_fiber_g
+                ViewState("TotalCalcium") = summary.total_calcium_mg
+                ViewState("TotalIron") = summary.total_fe_mg
+                ViewState("TotalNatrium") = summary.total_natrium_mg
+                ViewState("TotalBMR") = summary.total_bmr
+                ViewState("RemainingBMR") = summary.remaining_bmr
 
-        AssignPieChartData()
+                litError.Text = ""
+                litError.Visible = False
+
+                AssignPieChartData()
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "tablesorter", "$(document).ready(function() {$('#foodTable').DataTable();});", True)
+            Else
+                litError.Visible = True
+                litError.Text = "<span class='alert alert-danger'>Invalid Date</span><br/><br/>"
+            End If
+        Else
+            litError.Visible = True
+            litError.Text = "<span class='alert alert-danger'>Please enter a date</span><br/><br/>"
+        End If
+
     End Sub
 
     Sub AssignPieChartData()
