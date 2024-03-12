@@ -63,9 +63,10 @@ Public Class DailyConsumption
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
+            PreventBackLogin()
             LoadFoodList()
             ClearModal()
-            PreventBackLogin()
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "tablesorter", "$(document).ready(function() {$('#dailyConsumptionTable').DataTable();});", True)
         End If
     End Sub
 

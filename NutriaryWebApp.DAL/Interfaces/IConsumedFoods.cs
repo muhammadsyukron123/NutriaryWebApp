@@ -23,11 +23,13 @@ namespace NutriaryWebApp.DAL.Interfaces
 
         IEnumerable<FoodDetails> GetFoodDetailsByLogId(int log_id);
 
-        DailyTotalNutrition GetDailyTotalNutrition(int userID);
+        DailyTotalNutritionInfo GetDailyTotalNutrition(int userID);
 
         DailyTotalNutrition GetDailyTotalNutritionByDate(int userID, DateTime date);
 
         IEnumerable<DailyFoodMenu> GetDailyFoodMenuOnDate(int userID, DateTime date);
+
+        CalorieSummary GetCalorieSummaryToday(int userID);
 
         //IEnumerable<GetAllFood> GetAllFood();
 

@@ -4,8 +4,8 @@ using System.Text;
 
 namespace NutriaryWebApp.BLL.DTOs
 {
-    public class DailyTotalNutritionDTO
-    {                 
+    public class DailyTotalNutritionInfoDTO
+    {
         public int user_id { get; set; }
         public DateTime? log_date { get; set; }
         public decimal? total_energy_kal { get; set; }

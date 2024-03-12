@@ -14,19 +14,19 @@ Public Class Dashboard
     End Sub
 
 
-
     Sub LoadNutritionInfo()
         Dim result = _consumedFoodsBLL.GetDailyTotalNutrition(Session("UserID"))
-        Session("TotalCalories") = result.total_energy_kal
-        Session("TotalProtein") = result.total_protein_g
-        Session("TotalCarbs") = result.total_carbs_g
-        Session("TotalFat") = result.total_fat_g
-        Session("TotalFiber") = result.total_fiber_g
-        Session("TotalCalcium") = result.total_calcium_mg
-        Session("TotalIron") = result.total_fe_mg
-        Session("TotalNatrium") = result.total_natrium_mg
-        Session("TotalBMR") = result.total_bmr
-        Session("RemainingBMR") = result.remaining_bmr
+        Dim summary = _consumedFoodsBLL.GetCalorieSummaryToday(Session("UserID"))
+        Session("TotalCalories") = summary.consumed_calories
+        ViewState("TotalProtein") = result.total_protein_g
+        ViewState("TotalCarbs") = result.total_carbs_g
+        ViewState("TotalFat") = result.total_fat_g
+        ViewState("TotalFiber") = result.total_fiber_g
+        ViewState("TotalCalcium") = result.total_calcium_mg
+        ViewState("TotalIron") = result.total_fe_mg
+        ViewState("TotalNatrium") = result.total_natrium_mg
+        Session("TotalBMR") = summary.BMR
+        Session("RemainingBMR") = summary.remaining_calories
     End Sub
 
     Sub AssignPieChartData()
@@ -34,34 +34,34 @@ Public Class Dashboard
         NutritionChart.PieChartValues.Clear()
         NutritionChart.PieChartValues.Add(New AjaxControlToolkit.PieChartValue() With {
         .Category = "Protein",
-        .Data = Convert.ToDouble(Session("TotalProtein"))
+        .Data = Convert.ToDouble(ViewState("TotalProtein"))
     })
         NutritionChart.PieChartValues.Add(New AjaxControlToolkit.PieChartValue() With {
         .Category = "Carbohydrates",
-        .Data = Convert.ToDouble(Session("TotalCarbs"))
+        .Data = Convert.ToDouble(ViewState("TotalCarbs"))
     })
         NutritionChart.PieChartValues.Add(New AjaxControlToolkit.PieChartValue() With {
         .Category = "Fat",
-        .Data = Convert.ToDouble(Session("TotalFat"))
+        .Data = Convert.ToDouble(ViewState("TotalFat"))
     })
         NutritionChart.PieChartValues.Add(New AjaxControlToolkit.PieChartValue() With {
         .Category = "Fiber",
-        .Data = Convert.ToDouble(Session("TotalFiber"))
+        .Data = Convert.ToDouble(ViewState("TotalFiber"))
     })
 
         ' Assign values to the PieChart1
         PieChart1.PieChartValues.Clear()
         PieChart1.PieChartValues.Add(New AjaxControlToolkit.PieChartValue() With {
         .Category = "Calcium",
-        .Data = Convert.ToDouble(Session("TotalCalcium"))
+        .Data = Convert.ToDouble(ViewState("TotalCalcium"))
     })
         PieChart1.PieChartValues.Add(New AjaxControlToolkit.PieChartValue() With {
         .Category = "Iron",
-        .Data = Convert.ToDouble(Session("TotalIron"))
+        .Data = Convert.ToDouble(ViewState("TotalIron"))
     })
         PieChart1.PieChartValues.Add(New AjaxControlToolkit.PieChartValue() With {
         .Category = "Natrium",
-        .Data = Convert.ToDouble(Session("TotalNatrium"))
+        .Data = Convert.ToDouble(ViewState("TotalNatrium"))
     })
     End Sub
 

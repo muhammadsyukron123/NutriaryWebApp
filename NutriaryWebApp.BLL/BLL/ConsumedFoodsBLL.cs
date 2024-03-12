@@ -57,6 +57,31 @@ namespace NutriaryWebApp.BLL.BLL
             return foodNameLists;
         }
 
+        public CalorieSummaryDTO GetCalorieSummaryToday(int userID)
+        {
+            CalorieSummaryDTO calorieSummaryDTO = new CalorieSummaryDTO();
+            var calorieSummary = _consumedFoods.GetCalorieSummaryToday(userID);
+
+            if (calorieSummary == null)
+            {
+                calorieSummaryDTO.user_id = 0;
+                calorieSummaryDTO.log_date = DateTime.Now;
+                calorieSummaryDTO.BMR = 0;
+                calorieSummaryDTO.consumed_calories = 0;
+                calorieSummaryDTO.remaining_calories = 0;
+                return calorieSummaryDTO;
+            }
+            else
+            {
+                calorieSummaryDTO.user_id = calorieSummary.user_id;
+                calorieSummaryDTO.log_date = calorieSummary.log_date;
+                calorieSummaryDTO.BMR = calorieSummary.BMR;
+                calorieSummaryDTO.consumed_calories = calorieSummary.consumed_calories;
+                calorieSummaryDTO.remaining_calories = calorieSummary.remaining_calories;
+                return calorieSummaryDTO;
+            }
+        }
+
         public IEnumerable<DailyFoodMenuDTO> GetDailyFoodMenuOnDate(int userID, DateTime date)
         {
             List<DailyFoodMenuDTO> dailyFoodMenuDTOs = new List<DailyFoodMenuDTO>();
@@ -82,9 +107,9 @@ namespace NutriaryWebApp.BLL.BLL
             return dailyFoodMenuDTOs;
         }
 
-        public DailyTotalNutritionDTO GetDailyTotalNutrition(int userID)
+        public DailyTotalNutritionInfoDTO GetDailyTotalNutrition(int userID)
         {
-            DailyTotalNutritionDTO dailyTotalNutritionDTO = new DailyTotalNutritionDTO();
+            DailyTotalNutritionInfoDTO dailyTotalNutritionDTO = new DailyTotalNutritionInfoDTO();
             var dailyTotalNutrition = _consumedFoods.GetDailyTotalNutrition(userID);
 
             if (dailyTotalNutrition == null)

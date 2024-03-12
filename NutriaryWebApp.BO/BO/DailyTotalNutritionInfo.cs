@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NutriaryWebApp.BLL.DTOs
+namespace NutriaryWebApp.BO.BO
 {
-    public class DailyTotalNutritionDTO
-    {                 
+    public class DailyTotalNutritionInfo
+    {
         public int user_id { get; set; }
         public DateTime? log_date { get; set; }
         public decimal? total_energy_kal { get; set; }

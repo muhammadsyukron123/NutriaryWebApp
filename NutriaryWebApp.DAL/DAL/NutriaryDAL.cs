@@ -128,13 +128,13 @@ namespace NutriaryWebApp.DAL.DAL
             }
         }
 
-        public DailyTotalNutrition GetDailyTotalNutrition(int userID)
+        public DailyTotalNutritionInfo GetDailyTotalNutrition(int userID)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
                 var sqlSP = @"usp_GetTotalNutritionPerDay";
                 var param = new { user_id = userID };
-                var results = conn.QueryFirstOrDefault<DailyTotalNutrition>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
+                var results = conn.QueryFirstOrDefault<DailyTotalNutritionInfo>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
                 return results;
             }
         }
@@ -157,6 +157,17 @@ namespace NutriaryWebApp.DAL.DAL
                 var sqlSP = @"usp_GetTotalNutritionByDate";
                 var param = new { user_id = userID, log_date = date };
                 var results = conn.QueryFirstOrDefault<DailyTotalNutrition>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
+                return results;
+            }
+        }
+
+        public CalorieSummary GetCalorieSummaryToday(int userID)
+        {
+            using(SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                var sqlSP = @"usp_GetCalorieSummary";
+                var param = new { user_id = userID };
+                var results = conn.QueryFirstOrDefault<CalorieSummary>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
                 return results;
             }
         }

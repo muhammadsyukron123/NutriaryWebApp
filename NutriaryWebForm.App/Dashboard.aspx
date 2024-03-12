@@ -28,8 +28,8 @@
                                             <%
                                             Dim totalCalories = Session("TotalCalories")
                                             Dim totalBMR = Session("TotalBMR")
-                                            Dim percentage = (totalCalories / totalBMR) * 100
-                                            %>
+                                            Dim percentage = If(totalBMR <> 0, (totalCalories / totalBMR) * 100, 0)
+                                    %>
                                             style="width: <%=percentage%>%" aria-valuenow="<%= Session("TotalCalories") %>" aria-valuemin="0"
                                             aria-valuemax="<%= Session("TotalBMR") %>">
                                         </div>
@@ -69,6 +69,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <div class="row">
