@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SampleMVC.Models
+namespace NutriaryWebMVC.Models
 {
     public class Category
     {

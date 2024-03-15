@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using NutriaryWebApp.BLL.BLL;
 using NutriaryWebApp.BLL.DTOs;
 using NutriaryWebApp.BLL.Interfaces;
-using SampleMVC.Models;
+using NutriaryWebMVC.Models;
 
-namespace SampleMVC.Controllers
+namespace NutriaryWebMVC.Controllers
 {
     public class CategoriesController : Controller
     {

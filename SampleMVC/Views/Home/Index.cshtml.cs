@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace SampleMVC.Views.Home
+namespace NutriaryWebMVC.Views.Home
 {
     public class Index : PageModel
     {

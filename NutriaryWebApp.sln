@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriaryWebApp.DAL", "Nutri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriaryWebApp.BLL", "NutriaryWebApp.BLL\NutriaryWebApp.BLL.csproj", "{1C9E4C42-807A-4B6F-BAA7-11C13B08002E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleMVC", "SampleMVC\SampleMVC.csproj", "{95E26C99-F16B-44A2-A70E-1F3B590627C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriaryWebMVC", "SampleMVC\NutriaryWebMVC.csproj", "{95E26C99-F16B-44A2-A70E-1F3B590627C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriaryMVC", "NutriaryMVC\NutriaryMVC.csproj", "{20AF5073-9E39-4026-970F-3F4C7E4E0A80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{95E26C99-F16B-44A2-A70E-1F3B590627C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95E26C99-F16B-44A2-A70E-1F3B590627C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95E26C99-F16B-44A2-A70E-1F3B590627C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20AF5073-9E39-4026-970F-3F4C7E4E0A80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20AF5073-9E39-4026-970F-3F4C7E4E0A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20AF5073-9E39-4026-970F-3F4C7E4E0A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20AF5073-9E39-4026-970F-3F4C7E4E0A80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

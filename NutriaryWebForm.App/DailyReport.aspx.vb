@@ -8,7 +8,6 @@ Public Class DailyReport
             PreventBackLogin()
             LoadDailyFoodMenu()
             AssignPieChartData()
-
         End If
     End Sub
 
@@ -18,6 +17,7 @@ Public Class DailyReport
             Response.Redirect("Login.aspx")
         End If
     End Sub
+
     Sub LoadDailyFoodMenu()
         Dim dateSelected = Date.Today
         Dim userId As Integer = Session("UserID")

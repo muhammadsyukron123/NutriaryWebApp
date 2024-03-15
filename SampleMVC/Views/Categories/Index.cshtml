@@ -25,35 +25,6 @@ ViewData["Title"] = "Index";
             <h6 class="m-0 font-weight-bold text-primary">Food Consumption</h6>
         </div>
         <div class="card-body">
-            @*  <table class="table">
-            <thead>
-            <tr>
-            <th>UserID</th>
-            <th>Username</th>
-            </tr>
-            </thead>
-            <tbody>
-            @if (users.Count == 0)
-            {
-            <tr>
-            <td colspan="2">No Users</td>
-            </tr>
-            }
-            else
-            {
-            foreach (var user in users)
-            {
-            <tr>
-            <td>@user.UserId</td>
-            <td>@user.Username</td>
-            </tr>
-            }
-            }
-            </tbody>
-            </table>
-
-            <br /> *@
-
             <form method="post" action="/Categories/Search">
                 <div class="row">
                     <div class="col-md-6">
