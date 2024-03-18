@@ -123,6 +123,7 @@ namespace NutriaryWebApp.BLL.BLL
                 dailyTotalNutritionDTO.total_energy_kal = 0;
                 dailyTotalNutritionDTO.total_natrium_mg = 0;
                 dailyTotalNutritionDTO.total_bmr = 0;
+                dailyTotalNutritionDTO.total_fe_mg = 0;
                 dailyTotalNutritionDTO.remaining_bmr = 0;
                 return dailyTotalNutritionDTO;
             }
@@ -137,6 +138,7 @@ namespace NutriaryWebApp.BLL.BLL
                 dailyTotalNutritionDTO.total_energy_kal = dailyTotalNutrition.total_energy_kal;
                 dailyTotalNutritionDTO.total_natrium_mg = dailyTotalNutrition.total_natrium_mg;
                 dailyTotalNutritionDTO.total_bmr = dailyTotalNutrition.total_bmr;
+                dailyTotalNutritionDTO.total_fe_mg = dailyTotalNutrition.total_fe_mg;
                 dailyTotalNutritionDTO.remaining_bmr = dailyTotalNutrition.remaining_bmr;
 
                 return dailyTotalNutritionDTO;
@@ -159,6 +161,7 @@ namespace NutriaryWebApp.BLL.BLL
                 dailyTotalNutritionDTO.total_energy_kal = 0;
                 dailyTotalNutritionDTO.total_natrium_mg = 0;
                 dailyTotalNutritionDTO.total_bmr = 0;
+                dailyTotalNutritionDTO.total_fe_mg = 0;
                 dailyTotalNutritionDTO.remaining_bmr = 0;
                 return dailyTotalNutritionDTO;
             }
@@ -173,6 +176,7 @@ namespace NutriaryWebApp.BLL.BLL
                 dailyTotalNutritionDTO.total_energy_kal = dailyTotalNutritionByDate.total_energy_kal;
                 dailyTotalNutritionDTO.total_natrium_mg = dailyTotalNutritionByDate.total_natrium_mg;
                 dailyTotalNutritionDTO.total_bmr = dailyTotalNutritionByDate.total_bmr;
+                dailyTotalNutritionDTO.total_fe_mg = dailyTotalNutritionByDate.total_fe_mg;
                 dailyTotalNutritionDTO.remaining_bmr = dailyTotalNutritionByDate.remaining_bmr;
 
                 return dailyTotalNutritionDTO;

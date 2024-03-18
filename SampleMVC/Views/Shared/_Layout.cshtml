@@ -2,7 +2,7 @@
 @using NutriaryWebApp.BLL.DTOs
 
 @{
-    if(Context.Session.GetString("User") == null)
+    if (Context.Session.GetString("User") == null)
     {
         Context.Response.Redirect("/Users/Login");
     }
@@ -36,26 +36,30 @@
     <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
 
 
+
+
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-@*     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+    @*     <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-        gtag('config', 'UA-94034622-3');
+    gtag('config', 'UA-94034622-3');
     </script> *@
     <!-- /END GA -->
 </head>
 
 <body>
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             <nav class="navbar bg-primary navbar-expand">
                 <form class="form-inline mr-auto">
                     <ul class="navbar-nav mr-3">
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-                        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
                     </ul>
                 </form>
                 <ul class="navbar-nav navbar-right">
@@ -91,14 +95,14 @@
                         <li class="dropdown">
                             <a asp-controller="Home" asp-action="Index" class="nav-link"><i class="fas fa-home"></i><span>Dashboard</span></a>
                         </li>
-                        
+
                         <li class="menu-header">Food Log</li>
                         <li class="dropdown">
                             <a asp-controller="Nutritions" asp-action="Index" class="nav-link"><i class="fas fa-history"></i><span>Add food log</span></a>
                         </li>
                         <li class="menu-header">Report</li>
                         <li class="dropdown">
-                            <a asp-controller="Nutritions" asp-action="DailyReport" class="nav-link" ><i class="fas fa-calendar"></i> <span>Daily Report</span></a>
+                            <a asp-controller="Nutritions" asp-action="DailyReport" class="nav-link"><i class="fas fa-calendar"></i> <span>Daily Report</span></a>
                         </li>
                 </aside>
             </div>
@@ -155,6 +159,17 @@
     <script src="/stisla/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
     <script src="/stisla/modules/jquery-ui/jquery-ui.min.js"></script>
 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+
+    <script src="/stisla/assets/modules/chart.min.js"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="/stisla/js/page/modules-chartjs.js"></script>
+
     <!-- Page Specific JS File -->
     <script src="/stisla/js/page/modules-datatables.js"></script>
 
@@ -168,3 +183,18 @@
 </body>
 
 </html>
+
+@section Scripts {
+    <script>
+        !function () { "use strict"; function g() { } function i(a) { var b = {}; return b.x = a.clientX - window.innerWidth / 2 || 0, b.y = a.clientY - window.innerHeight / 2 || 0, b.fi = Math.atan(0 === b.x ? 1 / 0 : -b.y / b.x) + (b.x < 0 ? Math.PI : -b.y < 0 ? 2 * Math.PI : 0), b.s = 45 * Math.sin(2 * b.fi) / 100, b.x /= 100, b.y /= 100, b.r = 2 * (Math.sqrt(Math.pow(b.x, 2) + Math.pow(b.y, 2)) / Math.sqrt(Math.pow(window.innerWidth, 2) + Math.pow(window.innerHeight, 2))), b } function j(a) { for (var b = {}, c = 0; c < e.length; c++)b[e[c]] = +a.getAttribute("data-speed-" + e[c]) || 0; return b } function k(a, b) { var c = {}; return c.x = a.x * b.x + "px", c.y = a.y * b.y + "px", c.scale = 1 + a.r * b.scale, c.opacity = 1 - a.r * Math.abs(b.opacity), c.rotate = 100 * -a.s * a.r * b.rotate + "deg", c } function l(a, c) { if (b) a.style.marginLeft = c.x, a.style.marginTop = c.y; else { for (var d in f) f.hasOwnProperty(d) && (a.style[d] = [f[d], "(", c.x + "," + c.y, "translate" === f[d] ? "" : ",0", ") scale(", c.scale, ") rotate(", c.rotate, ")"].join("")); a.style.opacity = c.opacity, a.style.MozOpacity = c.opacity } } function m(a) { if (!d) { a = "touchmove" === a.type ? a.changedTouches[0] : a; for (var b, c, g, e = i(a), f = 0; f < h.length; f++)g = h[f], b = j(g), c = k(e, b), l(g, c) } } var a = document.body.getAttribute("data-anm"); if (a) { var d, b = /MSIE.\d+\./gi.test(navigator.userAgent) && +navigator.userAgent.replace(/.*MSIE.(\d+)\..*/gi, "$1") < 9, c = "ontouchstart" in window || "onmsgesturechange" in window ? "touchmove" : "mousemove", e = ["x", "y", "scale", "opacity", "rotate"], f = { webkitTransform: "translate3d", MozTransform: "translate3d", msTransform: "translate3d", OTransform: "translate", transform: "translate3d" }, h = g.elements = document.querySelectorAll(a); g.on = function () { d = !1 }, g.off = function () { d = !0 }, g.toggle = function () { d = !d }, m({}), window.addEventListener ? window.addEventListener(c, m, !1) : window.attachEvent("onmousemove", function () { m.call(window, window.event) }), "function" == typeof define && define.amd ? define([], function () { return g }) : "undefined" != typeof module && module.exports ? module.exports = g : this.anm = g } }.call(this);
+
+
+
+        document.querySelector(".preloader").classList.add("opacity-0");
+        setTimeout(function () {
+            document.querySelector(".preloader").style.display = "none";
+        }, 1000);
+
+        anm.on();
+    </script>
+}

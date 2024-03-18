@@ -204,7 +204,7 @@ namespace NutriaryWebMVC.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("User");
-            return RedirectToAction("Login", "Users");
+            return RedirectToAction("LandingPage", "Home");
         }
     }
 }

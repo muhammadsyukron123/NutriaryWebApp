@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -18,10 +18,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\images\favicon\site.webmanifest" />
+    <None Include="wwwroot\images\Group 1.svg" />
+    <None Include="wwwroot\images\Group 2.svg" />
+    <None Include="wwwroot\images\Group 3.svg" />
+    <None Include="wwwroot\images\letter-n.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NutriaryWebApp.BLL\NutriaryWebApp.BLL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />

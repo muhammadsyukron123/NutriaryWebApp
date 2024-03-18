@@ -11,21 +11,18 @@
 
 <p>@ViewBag.Message</p>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <button class="btn btn-primary btn-user btn-sm text-lg" id="btnUpdateAccountModal">Update Account</button>
-    <button class="btn btn-success btn-user btn-sm text-lg" id="btnUpdateProfileModal">Update Profile</button>
-</div>
 <div class="row">
 
     <div class="col-xl-6 col-md-6 mb-4">
-        <div class="card card-primary rounded-30 shadow h-100 py-2">
+        <div class="card custom-radius h-100 py-2">
             <div class="card-body">
-                <div class="row no-gutters align-items-center mb-4">
+                <div class="d-flex  row no-gutters justify-content-between mb-4">
                     <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
                         Account Information
                     </div>
+                    <button class="btn btn-primary btn-user btn-sm text-lg" id="btnUpdateAccountModal">Update Account</button>
                 </div>
-
+                <div class="custom-divider mb-4"></div>
                 <div class="row no-gutters align-items-center mb-4">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
@@ -86,14 +83,15 @@
     </div>
 
     <div class="col-xl-6 col-md-6 mb-4">
-        <div class="card card-success rounded-30 shadow h-100 py-2">
+        <div class="card custom-radius h-100 py-2">
             <div class="card-body">
-                <div class="row no-gutters align-items-center mb-4">
+                <div class="d-flex row no-gutters justify-content-between mb-4">
                     <div class="text-xl font-weight-bold text-success text-uppercase mb-1">
                         User Profile Information
                     </div>
+                    <button class="btn btn-success btn-user btn-sm text-lg" id="btnUpdateProfileModal">Update Profile</button>
                 </div>
-
+                <div class="custom-divider mb-4"></div>
                 <div class="row no-gutters align-items-center mb-4">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
@@ -184,7 +182,7 @@
 </div>
 
 <!-- Edit Profile Modal-->
-<div class="modal fade" id="editProfileModal" tabindex="0" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade " id="editProfileModal" tabindex="0" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -306,6 +304,15 @@
     </div>
 </div>
 
+<style>
+    .custom-radius {
+        border-radius: 20px;
+    }
+
+    .custom-divider {
+        border: 0.5px solid #F8F8FF;
+    }
+</style>
 
 @section Scripts {
     @{

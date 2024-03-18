@@ -1,4 +1,6 @@
+using FluentValidation;
 using NutriaryWebApp.BLL.BLL;
+using NutriaryWebApp.BLL.DTOs;
 using NutriaryWebApp.BLL.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,9 @@ builder.Services.AddScoped<IAuthenticationBLL, AuthenticationBLL>();
 builder.Services.AddScoped<ICreateUserBLL, CreateUserBLL>();
 builder.Services.AddScoped<IUserProfileBLL, UserProfileBLL>();
 
+//fluent validation
+builder.Services.AddScoped<IValidator<UpdateUserAccountDTO>, UpdateUserAccountDTOValidator>();
+
 
 var app = builder.Build();
 app.UseStaticFiles();
@@ -31,7 +36,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Users}/{action=Login}/{id?}"
+    pattern: "{controller=Home}/{action=LandingPage}/{id?}"
 );
 
 app.Run();

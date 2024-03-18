@@ -1,10 +1,17 @@
-﻿@model NutriaryWebMVC.ViewModels.DailyReportViewModel
+﻿@using System.Text.Json
+@using NutriaryWebApp.BLL.DTOs
+@model NutriaryWebMVC.ViewModels.DailyReportViewModel
 @{
 
     ViewData["Title"] = "DailyReport";
     var nutrition = Model.dailyTotalNutritionDTO;
+    var nutritionSession = JsonSerializer.Deserialize<DailyTotalNutritionInfoDTO>(Context.Session.GetString("Nutrition"));
     var summary = Model.dailyFoodMenuDTO;
     var date = DateTime.Now;
+
+    var percentage = nutrition.total_bmr != 0 ? Math.Round((nutrition.total_energy_kal / nutrition.total_bmr) * 100 ?? 0, 2) : 0;
+
+
 
 }
 
@@ -21,12 +28,12 @@
 
     <div class="col-lg-12">
         <!-- Basic Card Example -->
-        <div class="card mb-4">
+        <div class="card custom-radius mb-4">
             @* <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Daily Report</h6>
             </div> *@
             <div class="card-header">
-                <h4 class="m-0 font-weight-bold text-primary">Food Consumption Summary</h4>
+                <h4 class="m-0 font-weight-bold text-primary">Food Consumption Report</h4>
                 <div class="card-header-action">
                     <a data-collapse="#mycard-collapse" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
                 </div>
@@ -49,7 +56,7 @@
                         </div>
                     </form>
 
-                    <table class="table table-responsive">
+                    <table id="tblFoodMenu" class="table table-responsive-lg">
                         <thead>
                             <tr>
                                 <th>Log Date</th>
@@ -75,13 +82,14 @@
                                     <td>@food.food_name</td>
                                     <td>@string.Format("{0:0.00}", food.energy_kal)</td>
                                     <td>@string.Format("{0:0.00}", food.quantity)</td>
-                                    <td>@food.carbs_g</td>
-                                    <td>@food.protein_g</td>
-                                    <td>@food.calcium_mg</td>
-                                    <td>@food.fat_g</td>
-                                    <td>@food.natrium_mg</td>
-                                    <td>@food.fiber_g</td>
-                                    <td>@food.fe_mg</td>
+                                    <td>@string.Format("{0:0.00}", food.carbs_g)</td>
+                                    <td>@string.Format("{0:0.00}", food.protein_g)</td>
+                                    <td>@string.Format("{0:0.00}", food.calcium_mg)</td>
+                                    <td>@string.Format("{0:0.00}", food.fat_g)</td>
+                                    <td>@string.Format("{0:0.00}", food.natrium_mg)</td>
+                                    <td>@string.Format("{0:0.00}", food.fiber_g)</td>
+                                    <td>@string.Format("{0:0.00}", food.fe_mg)</td>
+
                                 </tr>
                             }
                         </tbody>
@@ -95,7 +103,145 @@
 
 
 
+    <div class="col-lg-12">
+        <!-- Basic Card Example -->
+        <div class="card custom-radius mb-4">
+            @* <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Daily Report</h6>
+            </div> *@
+            <div class="card-header">
+                <h4 class="m-0 font-weight-bold text-primary">Food Consumption Summary</h4>
+                <div class="card-header-action">
+                    <a data-collapse="#mycard-report" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
+                </div>
+            </div>
+            <div class="collapse show" id="mycard-report">
+                <div class="card-body">
+                    <div class="row sortable-card">
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card custom-radius">
+
+                                <div class="card-body">
+                                    <div class="text font-weight-bold text-primary mb-2">
+                                        Total Consumed Calories
+                                    </div>
+                                    <div class="custom-divider mb-4"></div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h6 mb-0 mr-3 font-weight-bold text-gray-800"> @(Math.Round(nutrition.total_energy_kal ?? 0)) kcal</div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="progress progress-sm mr-2">
+                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                     style="width: @percentage%" aria-valuenow="@nutrition.total_energy_kal" aria-valuemin="0"
+                                                     aria-valuemax="@nutrition.total_bmr">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="h6 mb-0 mr-3 font-weight-bold text-gray-800">@percentage%</div>
+                                        </div>
+                                        <i class="fa fa-utensils fa-2x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card custom-radius">
+                                <div class="card-body">
+                                    <div class="text font-weight-bold text-success mb-2">
+                                        BMR (Calorie Limit)
+                                    </div>
+                                    <div class="custom-divider mb-4"></div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@nutrition.total_bmr kcal</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-tachometer-alt fa-2x"></i>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card custom-radius">
+                                <div class="card-body">
+                                    <div class="text font-weight-bold text-warning mb-2">
+                                        Remaining Calorie Limit
+                                    </div>
+                                    <div class="custom-divider mb-4"></div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@nutrition.remaining_bmr kcal</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-fire fa-2x"></i>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <div class="card custom-radius">
+                                <div class="card-body">
+                                    <div class="text font-weight-bold text-primary mb-2">
+                                        Total Macronutrients in grams
+                                    </div>
+                                    <div class="custom-divider mb-4"></div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="d-flex col mr-2 justify-content-center ">
+                                            <canvas class="h-25" id="myChart4"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <div class="card custom-radius">
+                                <div class="card-body">
+                                    <div class="text font-weight-bold text-primary mb-2">
+                                        Total Micronutrients in miligrams
+                                    </div>
+                                    <div class="custom-divider mb-4"></div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="d-flex col mr-2 justify-content-center ">
+                                            <canvas class="h-25" id="myChart5"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
 </div>
+
+
+<style>
+    .custom-radius {
+        border-radius: 20px;
+    }
+
+    .custom-divider {
+        border: 0.5px solid #F8F8FF;
+    }
+</style>
 
 @section Scripts {
     <script>
@@ -105,4 +251,83 @@
             logDateInput.value = new Date().toISOString().split('T')[0];
         }
     </script>
+
+    <script>
+        var ctx = document.getElementById("myChart4").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+        @Math.Round(@nutrition.total_carbs_g ?? 0),
+        @Math.Round(@nutrition.total_protein_g ?? 0),
+        @Math.Round(@nutrition.total_fat_g ?? 0),
+        @Math.Round(@nutrition.total_fiber_g ?? 0),
+                    ],
+                    backgroundColor: [
+                        '#6777ef',
+                        '#63ed7a',
+                        '#ffa426',
+                        '#fc544b',
+                    ],
+                    label: 'Macronutrients'
+                }],
+                labels: [
+                    'carbs (gr)',
+                    'protein (gr)',
+                    'fat (gr)',
+                    'fiber (gr)',
+                ],
+            },
+            options: {
+                responsive: false,
+                legend: {
+                    position: 'bottom',
+                },
+            }
+
+        });
+
+        var ctx = document.getElementById("myChart5").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+        @Math.Round(@nutrition.total_calcium_mg ?? 0),
+        @Math.Round(@nutrition.total_natrium_mg ?? 0),
+        @Math.Round(@nutrition.total_fe_mg ?? 0),
+                    ],
+                    backgroundColor: [
+                        '#6777ef',
+                        '#63ed7a',
+                        '#ffa426',
+                    ],
+                    label: 'Micronutrients'
+                }],
+                labels: [
+                    'Calcium (mg)',
+                    'Natrium (mg)',
+                    'Iron (mg)',
+                ],
+            },
+            options: {
+                responsive: false,
+                legend: {
+                    position: 'bottom',
+                },
+            }
+
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tblFoodMenu').DataTable();
+        });
+    </script>
+    <script src="/stisla/modules/datatables/datatables.min.js"></script>
+    <script src="/stisla/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
 }

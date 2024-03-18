@@ -24,7 +24,7 @@
 
 <div class="col-lg-12">
     <!-- Basic Card Example -->
-    <div class="card mb-4">
+    <div class="card custom-radius mb-4">
         <div class="card-header py-3 justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Food Consumption</h6>
             <button class="btn btn-primary" onclick="location.href='/Nutritions/Create'">
@@ -43,8 +43,6 @@
                             <th>Calories</th>
                             <th>Log Date</th>
                             <th>&nbsp;</th>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,11 +55,21 @@
                                 <td>@string.Format("{0:0.00}", foods.total_energy_kcal)</td>
                                 <td>@foods.log_date.ToString("dd/MM/yyyy")</td>
                                 <td>
-                                    <a href="/Nutritions/Detail/@foods.log_id" class="btn btn-success">
+                                    <a href="/Nutritions/Detail/@foods.log_id" class="btn btn-sm btn-success">
                                         <i class="fa fa-eye"></i> Details
                                     </a>
+                                    &nbsp;
+                                    &nbsp;
+                                    <a href="/Nutritions/Edit/@foods.log_id" class="btn btn-sm btn-warning">
+                                        <i class="fa fa-pen"></i> Edit
+                                    </a>
+                                    &nbsp;
+                                    &nbsp;
+                                    <a href="/Nutritions/Delete/@foods.log_id" onclick="return confirm('Want to delete this food log?')" class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash"></i> Delete
+                                    </a>
                                 </td>
-                                <td>
+@*                                 <td>
                                     <a href="/Nutritions/Edit/@foods.log_id" class="btn btn-warning">
                                         <i class="fa fa-pen"></i> Edit
                                     </a>
@@ -70,7 +78,7 @@
                                     <a href="/Nutritions/Delete/@foods.log_id" onclick="return confirm('Want to delete this food log?')" class="btn btn-danger">
                                         <i class="fa fa-trash"></i> Delete
                                     </a>
-                                </td>
+                                </td> *@
                             </tr>
                         }
                     </tbody>
@@ -110,6 +118,16 @@
     </div>
 
 </div>
+
+<style>
+    .custom-radius {
+        border-radius: 20px;
+    }
+
+    .custom-divider {
+        border: 0.5px solid #F8F8FF;
+    }
+</style>
 
 @section Scripts {
     @{
