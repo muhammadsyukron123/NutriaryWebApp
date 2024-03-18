@@ -43,13 +43,13 @@ namespace NutriaryWebApp.DAL.DAL
             
         }
 
-        public IEnumerable<UserProfileBO> GetUserProfile(int user_id)
+        public UserProfileBO GetUserProfile(int user_id)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
                 var sqlSP = @"ViewUserProfile";
                 var param = new { user_id = user_id };
-                return conn.Query<UserProfileBO>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
+                return conn.QueryFirstOrDefault<UserProfileBO>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 

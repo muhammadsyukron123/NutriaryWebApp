@@ -1,0 +1,358 @@
+﻿@model NutriaryWebApp.BLL.DTOs.ViewUserProfileDTO
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Profile Page</h1>
+</div>
+
+<p>@ViewBag.Message</p>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <button class="btn btn-primary btn-user btn-sm text-lg" id="btnUpdateAccountModal">Update Account</button>
+    <button class="btn btn-success btn-user btn-sm text-lg" id="btnUpdateProfileModal">Update Profile</button>
+</div>
+<div class="row">
+
+    <div class="col-xl-6 col-md-6 mb-4">
+        <div class="card card-primary rounded-30 shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
+                        Account Information
+                    </div>
+                </div>
+
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            First Name
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @Html.DisplayFor(model => model.firstname)
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-user fa-2x"></i>
+                    </div>
+                </div>
+
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Last Name
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @Html.DisplayFor(model => model.lastname)
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-user fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Username
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @Html.DisplayFor(model => model.username)
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-at fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Email
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @Html.DisplayFor(model => model.email)
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-envelope fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-md-6 mb-4">
+        <div class="card card-success rounded-30 shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="text-xl font-weight-bold text-success text-uppercase mb-1">
+                        User Profile Information
+                    </div>
+                </div>
+
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Gender
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @Html.DisplayFor(model => model.gender)
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-venus-mars fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Age
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @Html.DisplayFor(model => model.age)
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Height (cm)
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @Html.DisplayFor(model => model.height)
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-ruler fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Weight (kg)
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @Html.DisplayFor(model => model.weight)
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-weight fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Activity Level
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @Html.DisplayFor(model => model.ActivityLevel)
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-dumbbell fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+
+                <div class="row no-gutters align-items-center mb-4">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Target
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            @Html.DisplayFor(model => model.TargetGoal)
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-running fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Profile Modal-->
+<div class="modal fade" id="editProfileModal" tabindex="0" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit User Profile Information</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-controller="Users" asp-action="Profile">
+                    <div class="p-lg-3">
+                        <div id="ltUserProfileUpdateModal"></div>
+                        <div class="form-group row-cols-1">
+                            <label class="p-3" for="ddlGender">Choose your gender</label>
+                            <select id="ddlGender" class="form-control" name="gender">
+                                <option selected="selected">
+                                    @Html.DisplayFor(model => model.gender)
+                                </option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group row-cols-1">
+                            <label class="p-3" for="tbModalAge">Age</label>
+                            <input type="text" id="tbModalAge" class="form-control" placeholder="Age" name="age" value="@Html.DisplayFor(model => model.age)">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label class="p-3" for="tbModalWeight">Weight (kg)</label>
+                                <input type="text" id="tbModalWeight" class="form-control" placeholder="Weight" name="weight" value="@Html.DisplayFor(model => model.weight)">
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="p-3" for="tbModalHeight">Height (cm)</label>
+                                <input type="text" id="tbModalHeight" class="form-control" placeholder="Height" name="height" value="@Html.DisplayFor(model => model.height)">
+                            </div>
+                        </div>
+                        <div class="form-group row-cols-1">
+                            <label class="p-3" for="ddlActivityLevel">Choose your activity level</label>
+                            <select id="ddlActivityLevel" class="form-control" name="ActivityLevel">
+                                <option class="text-hide" selected="selected">
+                                    @Html.DisplayFor(model => model.ActivityLevel)
+                                </option>
+                                <option value="1">Sedentary</option>
+                                <option value="2">Lightly Active</option>
+                                <option value="3">Moderately Active</option>
+                                <option value="4">Very Active</option>
+                                <option value="5">Extra Active</option>
+                            </select>
+                        </div>
+                        <div class="form-group row-cols-1">
+                            <label class="p-3" for="ddlTargetGoal">Choose your goal</label>
+                            <select id="ddlTargetGoal" class="form-control" name="TargetGoal">
+                                <option class="text-hide" selected="selected">
+                                    @Html.DisplayFor(model => model.TargetGoal)
+                                </option>
+                                <option value="1">Weight gain</option>
+                                <option value="2">Maintain weight</option>
+                                <option value="3">Weight loss</option>
+                            </select>
+                        </div>
+                        <div class="form-group justify-content-end">
+                            <button type="submit" class="btn btn-success btn-lg btn-block">
+                                Update Profile
+                            </button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- update user account modal -->
+
+<div class="modal fade" id="editAccountModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit User Account Information</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form method="post" asp-controller="Users" asp-action="UpdateAccount" >
+                    <div class="p-lg-3">
+                        <div id="ltUserAccountUpdateModal"></div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label class="p-3" for="tbModalFirstName">First Name</label>
+                                <input type="text" id="tbModalFirstName" class="form-control" placeholder="First Name" name="firstname" value="@Html.DisplayFor(model => model.firstname)" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="p-3" for="tbModalLastName">Last Name</label>
+                                <input type="text" id="tbModalLastName" class="form-control" placeholder="Last Name" name="lastname" value="@Html.DisplayFor(model => model.lastname)" />
+                            </div>
+                        </div>
+                        <div class="form-group row-cols-1">
+                            <label class="p-3" for="tbModalUsername">Username</label>
+                            <input type="text" id="tbModalUsername" class="form-control" placeholder="Username" name="username" value="@Html.DisplayFor(model => model.username)" />
+                        </div>
+                        <div class="form-group row-cols-1">
+                            <label class="p-3" for="tbModalEmail">Email</label>
+                            <input type="text" id="tbModalEmail" class="form-control" placeholder="Email Address" name="email" value="@Html.DisplayFor(model => model.email)" />
+                        </div>
+                        <div class="form-check-group">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                Update Account
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        <script>
+            $('select[name="ddlGender"]').find('ddlGender[value="@Html.DisplayFor(model => model.gender)"]').attr("selected", true);
+        </script>
+        <script>
+            $('select[name="ddlActivityLevel"]').find('ddlActivityLevel[value="@Html.DisplayFor(model => model.ActivityLevel)"]').attr("selected", true);
+        </script>
+        <script>
+            $('select[name="ddlTargetGoal"]').find('ddlTargetGoal[value="@Html.DisplayFor(model => model.TargetGoal)"]').attr("selected", true);
+        </script>
+        
+        <script>
+            $("#editProfileModal").appendTo("body");
+        </script>
+
+        <script>
+            $("#editAccountModal").appendTo("body");
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#btnUpdateProfileModal").click(function () {
+                    $("#editProfileModal").modal('show');
+                });
+
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $("#btnUpdateAccountModal").click(function () {
+                    $("#editAccountModal").modal('show');
+                });
+
+            });
+        </script>
+
+        
+
+    }
+}
+
+
+
+
+
+
+
+

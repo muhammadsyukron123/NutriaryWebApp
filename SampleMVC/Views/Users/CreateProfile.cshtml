@@ -1,0 +1,194 @@
+﻿@model NutriaryWebApp.BLL.DTOs.AddUserProfileDTO
+
+@{
+    ViewData["Title"] = "CreateProfile";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Add Profile &mdash; Nutriary</title>
+
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="/stisla/modules/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stisla/modules/fontawesome/css/all.min.css">
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="/stisla/modules/jquery-selectric/selectric.css">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/stisla/css/style.css">
+    <link rel="stylesheet" href="/stisla/css/components.css">
+    <!-- Start GA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-94034622-3');
+    </script>
+    <!-- /END GA -->
+</head>
+
+<body>
+    <div id="app">
+        <section class="section">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+                        <div class="login-brand">
+                            <img src="/stisla/img/letter-n.svg" alt="logo" width="100" class="shadow-light rounded-circle">
+                        </div>
+
+                        <div class="card card-primary">
+                            <div class="card-header"><h4>Add Your Profile Information</h4></div>
+
+                            <div class="card-body">
+                                <form asp-action="CreateProfile">
+
+                                    <div class="form-group">
+                                        <label asp-for="gender" class="control-label">Gender</label>
+                                        <select asp-for="gender" class="form-select form-control">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                        <span asp-validation-for="gender" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="age" class="control-label">Age</label>
+                                        <input asp-for="age" class="form-control" type="number" />
+                                        <span asp-validation-for="age" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label asp-for="height" class="control-label"></label>
+                                            <input asp-for="height" type="number" class="form-control" />
+                                            <span asp-validation-for="height" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label asp-for="weight" class="control-label"></label>
+                                            <input asp-for="weight" type="number" class="form-control" />
+                                            <span asp-validation-for="weight" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="activity_level_id" class="control-label"></label>
+                                        <select asp-for="activity_level_id" class="form-select form-control">
+                                            <option value="1">Sedentary</option>
+                                            <option value="2">Lightly Active</option>
+                                            <option value="3">Moderately Active</option>
+                                            <option value="4">Very Active</option>
+                                            <option value="5">Extra Active</option>
+                                        </select>
+                                        <span asp-validation-for="activity_level_id" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="target_goal_id" class="control-label"></label>
+                                        <select asp-for="target_goal_id" class="form-control">
+                                            <option value="1">Gain Weight</option>
+                                            <option value="2">Maintain Weight</option>
+                                            <option value="3">Weight loss</option>
+                                        </select>
+                                        <span asp-validation-for="target_goal_id" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                            Register
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="simple-footer">
+                            Copyright &copy; Nutriary 2024
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="/stisla/modules/jquery.min.js"></script>
+    <script src="/stisla/modules/popper.js"></script>
+    <script src="/stisla/modules/tooltip.js"></script>
+    <script src="/stisla/modules/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/stisla/modules/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="/stisla/modules/moment.min.js"></script>
+    <script src="/stisla/js/stisla.js"></script>
+
+    <!-- JS Libraies -->
+    <script src="/stisla/modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
+    <script src="/stisla/modules/jquery-selectric/jquery.selectric.min.js"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="/stisla/js/page/auth-register.js"></script>
+
+    <!-- Template JS File -->
+    <script src="/stisla/js/scripts.js"></script>
+    <script src="/stisla/js/custom.js"></script>
+</body>
+</html>
+
+@* <h4>AddUserProfileDTO</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateProfile">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="user_id" class="control-label"></label>
+                <input asp-for="user_id" class="form-control" />
+                <span asp-validation-for="user_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="gender" class="control-label"></label>
+                <input asp-for="gender" class="form-control" />
+                <span asp-validation-for="gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="age" class="control-label"></label>
+                <input asp-for="age" class="form-control" />
+                <span asp-validation-for="age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="height" class="control-label"></label>
+                <input asp-for="height" class="form-control" />
+                <span asp-validation-for="height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="weight" class="control-label"></label>
+                <input asp-for="weight" class="form-control" />
+                <span asp-validation-for="weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="activity_level_id" class="control-label"></label>
+                <input asp-for="activity_level_id" class="form-control" />
+                <span asp-validation-for="activity_level_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="target_goal_id" class="control-label"></label>
+                <input asp-for="target_goal_id" class="form-control" />
+                <span asp-validation-for="target_goal_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+ *@
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

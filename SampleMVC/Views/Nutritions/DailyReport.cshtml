@@ -1,0 +1,108 @@
+﻿@model NutriaryWebMVC.ViewModels.DailyReportViewModel
+@{
+
+    ViewData["Title"] = "DailyReport";
+    var nutrition = Model.dailyTotalNutritionDTO;
+    var summary = Model.dailyFoodMenuDTO;
+    var date = DateTime.Now;
+
+}
+
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Daily Report</h1>
+</div>
+<div class="m-0 font-weight-bold text-primary mb-lg-4">
+    You can choose the log date you want to review
+</div>
+
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <!-- Basic Card Example -->
+        <div class="card mb-4">
+            @* <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Daily Report</h6>
+            </div> *@
+            <div class="card-header">
+                <h4 class="m-0 font-weight-bold text-primary">Food Consumption Summary</h4>
+                <div class="card-header-action">
+                    <a data-collapse="#mycard-collapse" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
+                </div>
+            </div>
+            <div class="collapse show" id="mycard-collapse">
+                <div class="card-body">
+                    <form method="post" asp-controller="Nutritions" asp-action="DailyReport">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <input type="date" class="form-control" id="logDate" name="date" />
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search "></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Log Date</th>
+                                <th>Food Name</th>
+                                <th>Calories</th>
+                                <th>Quantity</th>
+                                <th>Carbohydrates (gr)</th>
+                                <th>Protein (gr)</th>
+                                <th>Calcium</th>
+                                <th>Fat</th>
+                                <th>Natrium</th>
+                                <th>Fiber</th>
+                                <th>Iron</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var food in summary)
+                            {
+
+                                <tr>
+                                    <td>@food.log_date.ToString("dd/MM/yyyy")</td>
+                                    <td>@food.food_name</td>
+                                    <td>@string.Format("{0:0.00}", food.energy_kal)</td>
+                                    <td>@string.Format("{0:0.00}", food.quantity)</td>
+                                    <td>@food.carbs_g</td>
+                                    <td>@food.protein_g</td>
+                                    <td>@food.calcium_mg</td>
+                                    <td>@food.fat_g</td>
+                                    <td>@food.natrium_mg</td>
+                                    <td>@food.fiber_g</td>
+                                    <td>@food.fe_mg</td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
+
+@section Scripts {
+    <script>
+        // validate if the logDate input is empty, the value is today's date, but if there is a chosen date, set the logDate input to the chosen date
+        var logDateInput = document.getElementById('logDate');
+        if (logDateInput.value === '') {
+            logDateInput.value = new Date().toISOString().split('T')[0];
+        }
+    </script>
+}

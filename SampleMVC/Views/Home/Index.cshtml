@@ -1,6 +1,162 @@
+@using NutriaryWebApp.BLL.DTOs
+@using System.Text.Json
+@{
+    var summary = JsonSerializer.Deserialize<CalorieSummaryDTO>(Context.Session.GetString("CaloriesSummary"));
+    var nutrition = JsonSerializer.Deserialize<DailyTotalNutritionInfoDTO>(Context.Session.GetString("Nutrition"));
+    var user = JsonSerializer.Deserialize<UserLoginDTO>(Context.Session.GetString("User"));
+    var percentage = nutrition.total_bmr != 0 ? Math.Round((nutrition.total_energy_kal / nutrition.total_bmr) * 100 ?? 0, 2) : 0;
+            //format the percentage become 0.00
+
+}
+
 <h1>@ViewData["Title"]</h1>
 
-<div class="row">
+<h1 class="h3 mb-0 text-gray-800">
+    @Html.Raw(ViewBag.Message)
+</h1>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Welcome to Nutriary, @user.firstname @user.lastname</h1>
+</div>
+<div class="m-0 font-weight-bold text-primary">
+    This is your today's dashboard. You can see your daily progress here.
+</div>
+<br />
+
+<div class="row sortable-card">
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card card-primary">
+
+            <div class="card-body">
+                <div class="text font-weight-bold text-primary mb-5">
+                    Total Consumed Calories
+                </div>
+
+                <div class="row no-gutters align-items-center">
+                    <div class="col-auto">
+                        <div class="h6 mb-0 mr-3 font-weight-bold text-gray-800">@summary.consumed_calories kcal</div>
+                    </div>
+                    <div class="col">
+                        <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-primary" role="progressbar"
+                                 style="width: @percentage%" aria-valuenow="@summary.consumed_calories" aria-valuemin="0"
+                                 aria-valuemax="@summary.BMR">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="h6 mb-0 mr-3 font-weight-bold text-gray-800">@percentage%</div>
+                    </div>
+                    <i class="fa fa-utensils fa-2x"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card card-success">
+            <div class="card-body">
+                <div class="text font-weight-bold text-success mb-5">
+                    BMR (Calorie Limit)
+                </div>
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@summary.BMR kcal</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-tachometer-alt fa-2x"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card card-warning">
+            <div class="card-body">
+                <div class="text font-weight-bold text-warning mb-5">
+                    Remaining Calorie Limit
+                </div>
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@summary.remaining_calories kcal</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-fire fa-2x"></i>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@* <div class="row">
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body card-primary">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Total Consumed Calories
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h6 mb-0 mr-3 font-weight-bold text-gray-800">@summary.consumed_calories kcal</div>
+                            </div>
+                            <div class="col">
+                                <div class="progress progress-sm mr-2">
+                                    <div class="progress-bar bg-primary" role="progressbar"
+                                         style="width: @percentage" aria-valuenow="@summary.consumed_calories" aria-valuemin="0"
+                                         aria-valuemax="@summary.BMR">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            BMR (Calorie limit)
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@summary.BMR kcal</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Remaining calorie limit
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@summary.remaining_calories kcal</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> *@
+
+
+
+
+@* <div class="row">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Home</h1>
     </div>
@@ -20,4 +176,4 @@
 
     </div>
 
-</div>
+</div> *@

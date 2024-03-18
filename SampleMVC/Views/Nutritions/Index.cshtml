@@ -1,50 +1,43 @@
-@* @page
-@model SampleMVC.Views.Categories.Index
-@{
-ViewData["Title"] = "Index";
-} *@
 
 @model IEnumerable<NutriaryWebApp.BLL.DTOs.ConsumedFoodsDTO>
 
 @{
     if (ViewData["Users"] == null)
     {
-        ViewData["Users"] = new List<SampleMVC.Models.User>();
+        ViewData["Users"] = new List<NutriaryWebMVC.Models.User>();
     }
 
 
-    var users = ViewData["Users"] as List<SampleMVC.Models.User>;
+    var users = ViewData["Users"] as List<NutriaryWebMVC.Models.User>;
 }
+<head>
+    <title>Food Consumption Log</title>
+</head>
 
-<h1>List of Food Consumption</h1>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Food Consumption Log</h1>
+</div>
+<div class="m-0 font-weight-bold text-primary mb-lg-4">
+    You can add your food consumption here.
+</div>
 
 <div class="col-lg-12">
     <!-- Basic Card Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
+    <div class="card mb-4">
+        <div class="card-header py-3 justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Food Consumption</h6>
+            <button class="btn btn-primary" onclick="location.href='/Nutritions/Create'">
+                <i class="fa fa-plus-circle"></i>
+                Add Food Consumption
+            </button>
         </div>
         <div class="card-body">
-            <form method="post" action="/Categories/Search">
-                <div class="row">
-                    <div class="col-md-6">
-                        <input type="text" id="search" name="Search" class="form-control" placeholder="search category name" />
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-            </form>
-            <br />
-            <br />
-            <button class="btn btn-primary" onclick="location.href='/Categories/Create'">Create Categories</button>
-            <br />
-            <br />
             <div>
-                <table class="table table-responsive">
+                <table id="tblFoodLog" class="table table-responsive-lg">
                     <thead>
                         <tr>
-                            <th>Log ID</th>
+                            @* <th class="text-hide">Log ID</th> *@
                             <th>Food Name</th>
                             <th>Quantity</th>
                             <th>Calories</th>
@@ -58,23 +51,23 @@ ViewData["Title"] = "Index";
                         @foreach (var foods in Model)
                         {
                             <tr>
-                                <td>@foods.log_id</td>
+                                @* <td class ="text-hide">@foods.log_id</td> *@
                                 <td>@foods.food_name</td>
                                 <td>@string.Format("{0:0.00}", foods.quantity)</td>
                                 <td>@string.Format("{0:0.00}", foods.total_energy_kcal)</td>
                                 <td>@foods.log_date.ToString("dd/MM/yyyy")</td>
                                 <td>
-                                    <a href="/Categories/Detail/@foods.log_id" class="btn btn-success">
-                                        <i class="fa fa-eye"></i> Select
+                                    <a href="/Nutritions/Detail/@foods.log_id" class="btn btn-success">
+                                        <i class="fa fa-eye"></i> Details
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="/Categories/Edit/@foods.log_id" class="btn btn-warning">
+                                    <a href="/Nutritions/Edit/@foods.log_id" class="btn btn-warning">
                                         <i class="fa fa-pen"></i> Edit
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="/Categories/Delete/@foods.log_id" class="btn btn-danger">
+                                    <a href="/Nutritions/Delete/@foods.log_id" onclick="return confirm('Want to delete this food log?')" class="btn btn-danger">
                                         <i class="fa fa-trash"></i> Delete
                                     </a>
                                 </td>
@@ -117,3 +110,16 @@ ViewData["Title"] = "Index";
     </div>
 
 </div>
+
+@section Scripts {
+    @{
+        <script>
+            $(document).ready(function () {
+                $('#tblFoodLog').DataTable();
+            });
+        </script>
+        <script src="/stisla/modules/datatables/datatables.min.js"></script>
+        <script src="/stisla/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+    }
+}

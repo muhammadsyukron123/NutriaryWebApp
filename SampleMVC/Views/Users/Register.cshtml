@@ -1,0 +1,203 @@
+﻿@model NutriaryWebApp.BLL.DTOs.CreateUserDTO
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+    var message = ViewBag.Message;
+    if (!string.IsNullOrEmpty(message))
+    {
+        @Html.Raw(message)
+    }
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Register &mdash; Nutriary</title>
+
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="/stisla/modules/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stisla/modules/fontawesome/css/all.min.css">
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="/stisla/modules/jquery-selectric/selectric.css">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/stisla/css/style.css">
+    <link rel="stylesheet" href="/stisla/css/components.css">
+    <!-- Start GA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-94034622-3');
+    </script>
+    <!-- /END GA -->
+</head>
+
+<body>
+    <div id="app">
+        <section class="section">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+                        <div class="login-brand">
+                            <img src="/stisla/img/letter-n.svg" alt="logo" width="100" class="shadow-light rounded-circle">
+                        </div>
+
+                        <div class="card card-primary">
+                            <div class="card-header"><h4>Register</h4></div>
+
+                            <div class="card-body">
+                                <form asp-action="Register">
+                                    <div asp-validation-summary="All" class="text-danger bg-gradient-danger" ></div>
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label class="control-label">First name</label>
+                                            <input asp-for="firstname" required class="form-control" />
+                                            <span asp-validation-for="firstname" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="control-label">Last name</label>
+                                            <input asp-for="lastname" required class="form-control" />
+                                            <span asp-validation-for="lastname" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label class="control-label">Email</label>
+                                            <input asp-for="email" required class="form-control" type="email" />
+                                            <div class="invalid-feedback">
+                                            </div>
+                                            <span asp-validation-for="email" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="control-label">Username</label>
+                                            <input asp-for="username" required class="form-control" />
+                                            <span asp-validation-for="username" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label class="control-label">Password</label>
+                                            <input asp-for="password" required id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" />
+                                            <div id="pwindicator" class="pwindicator">
+                                                <div class="bar"></div>
+                                                <div class="label"></div>
+                                            </div>
+                                            <span asp-validation-for="password" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label for="confirmpassword" class="d-block">Password Confirmation</label>
+                                            <input  id="confirmpassword" required type="password" class="form-control" name="confirmpassword" />
+                                            <span asp-validation-for="confirmpassword" class="text-danger"></span>
+                                            
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit" id="btnRegister" class="btn btn-primary btn-lg btn-block">
+                                            Register
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="simple-footer">
+                            Copyright &copy; Nutriary 2024
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="/stisla/modules/jquery.min.js"></script>
+    <script src="/stisla/modules/popper.js"></script>
+    <script src="/stisla/modules/tooltip.js"></script>
+    <script src="/stisla/modules/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/stisla/modules/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="/stisla/modules/moment.min.js"></script>
+    <script src="/stisla/js/stisla.js"></script>
+
+    <!-- JS Libraies -->
+    <script src="/stisla/modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
+    <script src="/stisla/modules/jquery-selectric/jquery.selectric.min.js"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="/stisla/js/page/auth-register.js"></script>
+
+    <!-- Template JS File -->
+    <script src="/stisla/js/scripts.js"></script>
+    <script src="/stisla/js/custom.js"></script>
+</body>
+</html>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmpassword").value;
+            var passwordConfirmError = document.getElementById("password-confirm-error");
+
+            if (password !== confirmPassword) {
+                passwordConfirmError.textContent = "Password does not match";
+                document.getElementById("confirmpassword").setCustomValidity("Password does not match");
+            } else {
+                passwordConfirmError.textContent = "";
+                document.getElementById("confirmpassword").setCustomValidity("");
+            }
+        }
+    </script>
+
+    @* <script>
+        $(document).ready(function () {
+            $('#confirmpassword').on('input', function () {
+                if ($('#password').val() != $('#confirmpassword').val()) {
+                    $('#confirmpassword')[0].setCustomValidity('Password not match');
+                } else {
+                    $('#confirmpassword')[0].setCustomValidity('');
+                }
+            });
+        });
+    </script> *@
+
+    @* <script>
+        var password = document.getElementById("password");
+        var confirm_password = document.getElementById("confirmpassword");
+
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    </script> *@
+
+    @* //script to throw message if the password and confirmpassword input is not match everytime the user type the password confirmation on the confirmpassword input field *@
+
+}
+
+
+

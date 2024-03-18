@@ -59,30 +59,41 @@ namespace NutriaryWebApp.BLL.BLL
             return user;
         }
 
-        public IEnumerable<ViewUserProfileDTO> GetUserProfile(int user_id)
+        public ViewUserProfileDTO GetUserProfile(int user_id)
         {
 
             try
             {
-                List<ViewUserProfileDTO> viewUserProfile = new List<ViewUserProfileDTO>();
+                ViewUserProfileDTO viewUserProfile = new ViewUserProfileDTO();
                 var getUserProfile = _addUserProfile.GetUserProfile(user_id);
-                foreach (var item in getUserProfile)
+                var getUserAccount = _addUserProfile.GetUserAccount(user_id);
+                if (getUserProfile == null)
                 {
-                    viewUserProfile.Add(new ViewUserProfileDTO
-                    {
-                        firstname = item.firstname,
-                        lastname = item.lastname,
-                        username = item.username,
-                        email = item.email,
-                        gender = item.gender,
-                        age = item.age,
-                        weight = item.weight,
-                        height = item.height,
-                        TargetGoal = item.TargetGoal,
-                        ActivityLevel = item.ActivityLevel
-
-                    });
+                    viewUserProfile.username = getUserAccount.username;
+                    viewUserProfile.firstname = getUserAccount.firstname;
+                    viewUserProfile.lastname = getUserAccount.lastname;
+                    viewUserProfile.email = getUserAccount.email;
+                    viewUserProfile.age = 0;
+                    viewUserProfile.gender = "Not set";
+                    viewUserProfile.weight = 0;
+                    viewUserProfile.height = 0;
+                    viewUserProfile.ActivityLevel = "Not set";
+                    viewUserProfile.TargetGoal = "Not set";
+                    return viewUserProfile;
                 }
+
+                viewUserProfile.username = getUserProfile.username;
+                viewUserProfile.firstname = getUserProfile.firstname;
+                viewUserProfile.lastname = getUserProfile.lastname;
+                viewUserProfile.email = getUserProfile.email;
+                viewUserProfile.age = getUserProfile.age;
+                viewUserProfile.gender = getUserProfile.gender;
+                viewUserProfile.weight = getUserProfile.weight;
+                viewUserProfile.height = getUserProfile.height;
+                viewUserProfile.ActivityLevel = getUserProfile.ActivityLevel;
+                viewUserProfile.TargetGoal = getUserProfile.TargetGoal;
+
+
                 return viewUserProfile;
             }
             catch (Exception ex)

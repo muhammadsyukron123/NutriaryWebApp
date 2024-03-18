@@ -9,6 +9,7 @@ namespace NutriaryWebApp.BLL.Interfaces
     public interface IAuthenticationBLL
     {
         UserLoginDTO LoginUser(string username, string password);
+        UserLoginDTO LoginMVC(LoginDTO loginDTO);
 
     }
 }

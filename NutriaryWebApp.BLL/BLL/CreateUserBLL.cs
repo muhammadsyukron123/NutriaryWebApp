@@ -26,6 +26,7 @@ namespace NutriaryWebApp.BLL.BLL
                     username = user.username,
                     email = user.email,
                     password = user.password,
+                    confirmpassword = user.confirmpassword,
                     firstname = user.firstname,
                     lastname = user.lastname
                 });
