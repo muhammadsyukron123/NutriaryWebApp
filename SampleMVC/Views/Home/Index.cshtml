@@ -25,6 +25,33 @@
 </div>
 <br />
 
+@if (summary.BMR == 0 )
+{
+    <div class="alert alert-danger alert-dismissible show fade">
+        <div class="alert-body">
+            <button class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+            It seems like you haven't set your profile yet. Please set your profile first to set the Basal Metabolic Rate.
+        </div>
+    </div>
+}
+
+@if(summary.BMR == null)
+{
+    <div class="alert alert-danger alert-dismissible show fade">
+        <div class="alert-body">
+            <button class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+            It seems like you haven't set your profile yet. Please set your profile first to set the Basal Metabolic Rate.
+        </div>
+    </div>
+
+}
+
+
+
 <div class="row sortable-card">
     <div class="col-12 col-md-6 col-lg-4">
         <div class="card custom-radius">
@@ -97,7 +124,7 @@
 </div>
 
 <div class="row">
-    
+
 
 
 
@@ -148,10 +175,10 @@
             data: {
                 datasets: [{
                     data: [
-                        @Math.Round(@nutrition.total_carbs_g ?? 0),
-                        @Math.Round(@nutrition.total_protein_g ?? 0),
-                        @Math.Round(@nutrition.total_fat_g ?? 0),
-                        @Math.Round(@nutrition.total_fiber_g ?? 0),
+        @Math.Round(@nutrition.total_carbs_g ?? 0),
+        @Math.Round(@nutrition.total_protein_g ?? 0),
+        @Math.Round(@nutrition.total_fat_g ?? 0),
+        @Math.Round(@nutrition.total_fiber_g ?? 0),
                     ],
                     backgroundColor: [
                         '#6777ef',
@@ -174,7 +201,7 @@
                     position: 'bottom',
                 },
             }
-        
+
         });
 
         var ctx = document.getElementById("myChart5").getContext('2d');
@@ -183,9 +210,9 @@
             data: {
                 datasets: [{
                     data: [
-                        @Math.Round(@nutrition.total_calcium_mg ?? 0),
-                        @Math.Round(@nutrition.total_natrium_mg ?? 0),
-                        @Math.Round(@nutrition.total_fe_mg ?? 0),
+        @Math.Round(@nutrition.total_calcium_mg ?? 0),
+        @Math.Round(@nutrition.total_natrium_mg ?? 0),
+        @Math.Round(@nutrition.total_fe_mg ?? 0),
                     ],
                     backgroundColor: [
                         '#6777ef',

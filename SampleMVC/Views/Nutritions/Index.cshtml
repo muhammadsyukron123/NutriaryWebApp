@@ -1,3 +1,5 @@
+@using System.Text.Json
+@using NutriaryWebApp.BLL.DTOs
 
 @model IEnumerable<NutriaryWebApp.BLL.DTOs.ConsumedFoodsDTO>
 
@@ -9,6 +11,20 @@
 
 
     var users = ViewData["Users"] as List<NutriaryWebMVC.Models.User>;
+
+
+    var summary = JsonSerializer.Deserialize<CalorieSummaryDTO>(Context.Session.GetString("CaloriesSummary"));
+    if (summary.BMR == 0)
+    {
+        Context.Response.Redirect("/Home/Index");
+    }
+    if (summary.BMR == null)
+    {
+        Context.Response.Redirect("/Home/Index");
+    }
+
+
+
 }
 <head>
     <title>Food Consumption Log</title>

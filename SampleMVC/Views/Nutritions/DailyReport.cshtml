@@ -12,6 +12,18 @@
     var percentage = nutrition.total_bmr != 0 ? Math.Round((nutrition.total_energy_kal / nutrition.total_bmr) * 100 ?? 0, 2) : 0;
 
 
+    var summarySession = JsonSerializer.Deserialize<CalorieSummaryDTO>(Context.Session.GetString("CaloriesSummary"));
+    if (summarySession.BMR == 0)
+    {
+        Context.Response.Redirect("/Home/Index");
+    }
+    if (summarySession.BMR == null)
+    {
+        Context.Response.Redirect("/Home/Index");
+    }
+
+
+
 
 }
 
@@ -61,15 +73,15 @@
                             <tr>
                                 <th>Log Date</th>
                                 <th>Food Name</th>
-                                <th>Calories</th>
-                                <th>Quantity</th>
+                                <th>Calories (kcal)</th>
+                                <th>Quantity (gr)</th>
                                 <th>Carbohydrates (gr)</th>
                                 <th>Protein (gr)</th>
-                                <th>Calcium</th>
-                                <th>Fat</th>
-                                <th>Natrium</th>
-                                <th>Fiber</th>
-                                <th>Iron</th>
+                                <th>Calcium (mg)</th>
+                                <th>Fat (gr)</th>
+                                <th>Natrium (mg)</th>
+                                <th>Fiber (gr) </th>
+                                <th>Iron (mg)</th>
                             </tr>
                         </thead>
                         <tbody>

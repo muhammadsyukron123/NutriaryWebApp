@@ -23,16 +23,15 @@
                     <form method="post" action="/Nutritions/Edit">
                         @foreach (var item in Model)
                         {
-                            <div class="form-group">
                                 <input type="hidden" class="form-control" id="log_id" name="log_id" readonly="true" value="@item.log_id" placeholder="Log ID" />
-                            </div>
+
                             <div class="form-group">
                                 <label for="food_name">Food Name : </label>
                                 <input type="text" class="form-control" id="food_name" name="food_name" readonly="true" value="@item.food_name" placeholder="Choose your foods" />
                             </div>
                             <div class="form-group">
                                 <label for="quantity">Quantity : </label>
-                                <input type="text" class="form-control" id="quantity" name="quantity" value="@item.quantity" placeholder="Insert your food quantity" />
+                                <input type="number" class="form-control" id="quantity" name="quantity" value="@item.quantity" placeholder="Insert your food quantity" />
                             </div>
                             <div>
                                 <input class="btn btn-primary" type="Submit" value="Save Edit Quantity" />
