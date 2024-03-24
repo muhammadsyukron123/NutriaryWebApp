@@ -199,7 +199,7 @@
                         <div class="form-group row-cols-1">
                             <label class="p-3" for="ddlGender">Choose your gender</label>
                             <select id="ddlGender" class="form-control" name="gender">
-                                <option selected="selected">
+                                <option class="text-hide" selected="selected">
                                     @Html.DisplayFor(model => model.gender)
                                 </option>
                                 <option value="Male">Male</option>
@@ -222,7 +222,7 @@
                         </div>
                         <div class="form-group row-cols-1">
                             <label class="p-3" for="ddlActivityLevel">Choose your activity level</label>
-                            <select id="ddlActivityLevel" class="form-control" name="ActivityLevel">
+                            <select id="ddlActivityLevel" class="form-control" name="activity_level_id">
                                 <option class="text-hide" selected="selected">
                                     @Html.DisplayFor(model => model.ActivityLevel)
                                 </option>
@@ -235,7 +235,7 @@
                         </div>
                         <div class="form-group row-cols-1">
                             <label class="p-3" for="ddlTargetGoal">Choose your goal</label>
-                            <select id="ddlTargetGoal" class="form-control" name="TargetGoal">
+                            <select id="ddlTargetGoal" class="form-control" name="target_goal_id">
                                 <option class="text-hide" selected="selected">
                                     @Html.DisplayFor(model => model.TargetGoal)
                                 </option>

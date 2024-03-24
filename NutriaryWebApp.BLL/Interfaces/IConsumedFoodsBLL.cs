@@ -14,7 +14,7 @@ namespace NutriaryWebApp.BLL.Interfaces
 
         void DeleteFoodLog(int log_id);
 
-        void AddFoodConsumption(int userID, string foodName, decimal quantity);
+        void AddFoodConsumption(AddFoodConsumptionDTO addFoodConsumptionDTO);
 
         IEnumerable<FoodNameListDTO> foodNameLists();
 

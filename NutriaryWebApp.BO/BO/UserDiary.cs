@@ -4,7 +4,13 @@ using System.Text;
 
 namespace NutriaryWebApp.BO.BO
 {
-    internal class UserDiary
+    public class UserDiary
     {
+
+        public int diary_id { get; set; }
+        public DateTime log_date { get; set; }
+        public string notes { get; set; }
+
+
     }
 }

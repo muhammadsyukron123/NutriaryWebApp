@@ -11,7 +11,7 @@ namespace NutriaryWebApp.BO.BO
         public int age { get; set; }
         public decimal height { get; set; }
         public decimal weight { get; set; }
-        public string ActivityLevel { get; set; }
-        public string TargetGoal { get; set; }
+        public int ActivityLevel { get; set; }
+        public int TargetGoal { get; set; }
     }
 }

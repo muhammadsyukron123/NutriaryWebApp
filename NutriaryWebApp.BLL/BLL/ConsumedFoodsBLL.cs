@@ -18,11 +18,11 @@ namespace NutriaryWebApp.BLL.BLL
             _consumedFoods = new NutriaryDAL();
         }
 
-        public void AddFoodConsumption(int userID, string foodName, decimal quantity)
+        public void AddFoodConsumption(AddFoodConsumptionDTO addFoodConsumptionDTO)
         {
             try
             {
-                _consumedFoods.AddFoodConsumption(userID, foodName, quantity);
+                _consumedFoods.AddFoodConsumption(addFoodConsumptionDTO.UserID, addFoodConsumptionDTO.FoodName, addFoodConsumptionDTO.Quantity);
             }
             catch (Exception ex)
             {

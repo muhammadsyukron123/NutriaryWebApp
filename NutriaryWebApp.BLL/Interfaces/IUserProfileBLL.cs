@@ -12,5 +12,7 @@ namespace NutriaryWebApp.BLL.Interfaces
         void UpdateUserProfile(UpdateUserProfileDTO updateUserProfileDTO);
         void UpdateUserAccount(UpdateUserAccountDTO updateUserAccountDTO);
         UserDTO GetUserAccount(int user_id);
+        UserDiaryDTO GetUserDiary(int user_id, DateTime date);
+        
     }
 }

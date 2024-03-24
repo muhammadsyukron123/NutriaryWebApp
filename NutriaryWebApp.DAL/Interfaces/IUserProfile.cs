@@ -13,5 +13,6 @@ namespace NutriaryWebApp.DAL.Interfaces
 
         User GetUserAccount(int user_id);
         void UpdateUserAccount(UpdateUserAccountBO updateUserAccountBO);
+        UserDiary GetUserDiary(int user_id, DateTime date);
     }
 }

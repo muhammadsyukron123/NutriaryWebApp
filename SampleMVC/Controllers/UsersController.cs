@@ -118,7 +118,7 @@ namespace NutriaryWebMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Profile(UpdateUserProfileDTO userProfileDTO)
+        public IActionResult Profile(AddUserProfileDTO userProfileDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -129,7 +129,7 @@ namespace NutriaryWebMVC.Controllers
                 var user = JsonSerializer.Deserialize<UserLoginDTO>(HttpContext.Session.GetString("User"));
                 var userID = user.user_id;
                 userProfileDTO.user_id = userID;
-                _userProfileBLL.UpdateUserProfile(userProfileDTO);
+                _userProfileBLL.AddUserProfile(userProfileDTO);
                 TempData["Message"] = "Profile updated successfully";
                 ViewBag.Message = @"<div class=""alert alert-primary"" role=""alert"">Profile updated successfully</div>";
                 return RedirectToAction("Profile", "Users");

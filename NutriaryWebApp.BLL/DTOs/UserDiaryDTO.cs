@@ -4,7 +4,11 @@ using System.Text;
 
 namespace NutriaryWebApp.BLL.DTOs
 {
-    internal class UserDiaryDTO
+    public class UserDiaryDTO
     {
+        public int diary_id { get; set; }
+        public DateTime log_date { get; set; }
+        public string notes { get; set; }
+
     }
 }

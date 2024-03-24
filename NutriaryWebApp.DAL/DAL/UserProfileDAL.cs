@@ -98,5 +98,15 @@ namespace NutriaryWebApp.DAL.DAL
                 return conn.QueryFirstOrDefault<User>(sqlQuery, param);
             }
         }
+
+        public UserDiary GetUserDiary(int user_id, DateTime date)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                var sqlSP = @"usp_GetUserDiaryNote";
+                var param = new { user_id = user_id, log_date = date };
+                return conn.QueryFirstOrDefault<UserDiary>(sqlSP, param, commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
     }
 }

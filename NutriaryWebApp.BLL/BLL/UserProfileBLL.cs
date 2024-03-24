@@ -59,6 +59,30 @@ namespace NutriaryWebApp.BLL.BLL
             return user;
         }
 
+        public UserDiaryDTO GetUserDiary(int user_id, DateTime date)
+        {
+            try
+            {
+                UserDiaryDTO userDiary = new UserDiaryDTO();
+                var getUserDiary = _addUserProfile.GetUserDiary(user_id, date);
+                if (getUserDiary == null)
+                {
+                    userDiary.log_date = date;
+                    userDiary.notes = "No notes for this date";
+                    return userDiary;
+                }
+                userDiary.diary_id = getUserDiary.diary_id;
+                userDiary.log_date = getUserDiary.log_date;
+                userDiary.notes = getUserDiary.notes;
+                return userDiary;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public ViewUserProfileDTO GetUserProfile(int user_id)
         {
 
